@@ -1,0 +1,111 @@
+---
+import Cloudinary from './icons/Cloudinary.astro';
+import Docker from './icons/Docker.astro';
+import Express from './icons/Express.astro';
+import Git from './icons/Git.astro';
+import GitHub from './icons/GitHub.astro';
+import Javascript from './icons/JavascriptIcon.astro';
+import Jest from './icons/Jest.astro';
+import Nestjs from './icons/Nestjs.astro';
+import NextJS from './icons/NextJS.astro';
+import NodeIcon from './icons/NodeIcon.astro';
+import Postgre from './icons/PostgreSql.astro';
+import React from './icons/React.astro';
+import Tailwind from './icons/Tailwind.astro';
+import Teeam from './icons/Teeam.astro';
+import Typescript from './icons/TypeScriptIcon.astro';
+
+const TAGS = {
+  JAVASCRIPT: {
+    name: 'JavaScript',
+    class: 'bg-gray-800 text-white',
+    icon: Javascript
+  },
+  TYPESCRIPT: {
+    name: 'TypeScript',
+    class: 'bg-gray-800 text-white',
+    icon: Typescript
+  },
+  Node: {
+    name: 'Node.js',
+    class: 'bg-gray-800 text-white',
+    icon: NodeIcon
+  },
+  NEST: {
+    name: 'Nest.js',
+    class: 'bg-gray-800 text-white',
+    icon: Nestjs
+  },
+  EXPRESS: {
+    name: 'Express.js',
+    class: 'bg-gray-300 text-black',
+    icon: Express
+  },
+  NEXT: {
+    name: 'Next.js',
+    class: 'bg-gray-800 text-white',
+    icon: NextJS
+  },
+  REACT: {
+    name: 'React.js',
+    class: 'bg-gray-800 text-white',
+    icon: React
+  },
+  TAILWIND: {
+    name: 'Tailwind CSS',
+    class: 'bg-[#003159] text-white',
+    icon: Tailwind
+  },
+  JEST: {
+    name: 'Jest-Testing',
+    class: 'bg-gray-800 text-white',
+    icon: Jest
+  },
+  POSTGRE: {
+    name: 'PostgreSQL',
+    class: 'bg-gray-800 text-white',
+    icon: Postgre
+  },
+  CLOUDINARY: {
+    name: 'Cloudinary',
+    class: 'bg-gray-800 text-white',
+    icon: Cloudinary
+  },
+  GIT: {
+    name: 'Git',
+    class: 'bg-gray-800 text-white',
+    icon: Git
+  },
+  GITHUB: {
+    name: 'GitHub',
+    class: 'bg-gray-800 text-white',
+    icon: GitHub
+  },
+  DOCKER: {
+    name: 'Docker',
+    class: 'bg-gray-800 text-white',
+    icon: Docker
+  },
+
+  TEAM: {
+    name: 'En equipo',
+    class: 'bg-gray-800 text-white',
+    icon: Teeam
+  }
+};
+---
+
+<div>
+  <ul class="flex flex-wrap gap-2">
+    {
+      Object.values(TAGS).map(tag => (
+        <li>
+          <span class={`flex gap-x-2 items-center rounded-full text-base md:text-lg ${tag.class} py-1 px-2 `}>
+            <tag.icon class="size-6" />
+            {tag.name}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</div>

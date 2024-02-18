@@ -1,101 +1,104 @@
 ---
-import Layout from "@/layouts/Layout.astro"
+import Layout from '@/layouts/Layout.astro';
 
-import AboutMe from "@/components/AboutMe.astro"
-import Badge from "@/components/Badge.astro"
-import Briefcase from "@/components/icons/Briefcase.astro"
-import CodeIcon from "@/components/icons/Code.astro"
-import Experience from "@/components/Experience.astro"
-import GitHubIcon from "@/components/icons/GitHub.astro"
-import LinkedInIcon from "@/components/icons/LinkedIn.astro"
-import MailIcon from "@/components/icons/Mail.astro"
-import ProfileCheck from "@/components/icons/ProfileCheck.astro"
-import Projects from "@/components/Projects.astro"
-import SectionContainer from "@/components/SectionContainer.astro"
-import SocialPill from "@/components/SocialPill.astro"
+import AboutMe from '@/components/AboutMe.astro';
+import Badge from '@/components/Badge.astro';
+import Briefcase from '@/components/icons/Briefcase.astro';
+import CodeIcon from '@/components/icons/Code.astro';
+import Experience from '@/components/Experience.astro';
+import GitHubIcon from '@/components/icons/GitHub.astro';
+import LinkedInIcon from '@/components/icons/LinkedIn.astro';
+import MailIcon from '@/components/icons/Mail.astro';
+import ProfileCheck from '@/components/icons/ProfileCheck.astro';
+import Projects from '@/components/Projects.astro';
+import SectionContainer from '@/components/SectionContainer.astro';
+import SocialPill from '@/components/SocialPill.astro';
+import CV from '@/components/icons/CV.astro';
+import Recomendation from '@/components/Recomendation.astro';
+import Skills from '@/components/Skills.astro';
+import SkillsIcon from '@/components/icons/SkillsIcon.astro';
 ---
 
 <Layout
-  title="Porfolio de midudev - Desarrollador y Programador Web con 15 años de experiencia"
-  description="Contrata a midudev para crear tu aplicación web o móvil. Desarrollador Web y Creador de Contenido. Especializado en crear aplicaciones únicas."
+  title="Porfolio de Alfredo - Desarrollador Fullstack web"
+  description="Contrata a Alfredo Villegas, desarrollador con experiencia, para crear tu aplicación web"
 >
   <main class="px-4">
-    <SectionContainer class="py-44 pb-32">
-      <img
-        class="rounded-full size-12 mb-4"
-        src="/midudev.webp"
-        alt="midudev photo"
-      />
-      <h1
-        class="text-gray-900 dark:text-white text-3xl md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
-      >
-        Hey, soy midudev <a
-          href="https://linkedin.com/in/midudev"
+    <SectionContainer class="mt-20 md:mt-6 md:py-28 pb-32">
+      <div class="flex gap-5 mb-4 items-center">
+        <img class="rounded-full size-16 object-center" src="/alfredo-profile2.jpg" alt="midudev photo" />
+        <a
+          href="https://linkedin.com/in/alfredo-villegas-backend/"
           target="_blank"
           rel="noopener"
-          class="flex justify-center items-center hover:scale-105 transition"
+          class="flex justify-center mt-2 items-center hover:scale-105 transition"
         >
           <Badge>Disponible para trabajar</Badge>
         </a>
-      </h1>
-      <h2
-        class="text-xl lg:text-2xl text-balance max-w-[700px] text-black dark:text-white"
-      >
-        <span>+15 años de experiencia.</span><span
-          class="text-yellow-800 dark:text-yellow-200"
+      </div>
+
+      <h1 class="dark:text-white/95 text-3xl md:text-4xl lg:text-5xl font-bold pb-4 lg:pb-5">Hola, soy Alfredo</h1>
+      <h2 class="text-xl lg:text-2xl text-balance max-w-[700px] text-black dark:text-white/95">
+        <span>Cuento con experiencia como</span><span class="dark:text-primary-200 font-semibold">
+          Desarrollador web Full-stack</span
         >
-          Desarrollador Web y Creador de Contenido</span
-        >
-        .<span class="text-red-800 dark:text-red-200">
-          De Barcelona, España</span
-        >.
-        <span class="text-sky-800 dark:text-sky-200"
-          >Especializado en crear aplicaciones únicas.</span
-        >
+         trabajando en equipo bajo metodologias agiles, brindando soluciones y colaborando estrechamente con el cliente.
       </h2>
 
-      <nav class="flex gap-4 mt-8 flex-wrap">
-        <SocialPill href="https://linkedin.com/in/midudev">
+      <nav class="flex gap-4 mt-7 flex-wrap">
+        <SocialPill href="https://linkedin.com/in/alfredo-villegas-backend/">
           <LinkedInIcon class="size-4 md:size-6" />
-          LinkedIn
+           LinkedIn
         </SocialPill>
-        <SocialPill href="https://github.com/midudev">
+        <SocialPill href="https://github.com/alfredovillegas">
           <GitHubIcon class="size-4 md:size-6" />
-          GitHub
+           GitHub
         </SocialPill>
-        <SocialPill href="mailto:miduga@gmail.com">
+        <SocialPill href="https://drive.google.com/file/d/1WmYt0Qf3lJN9E30-rJwcJKJ7egLJ00Hm/view?usp=drive_link">
+          <CV class="size-4 md:size-6" />
+           Descargar CV
+        </SocialPill>
+        <SocialPill href="mailto:alfreddovillegas@gmail.com">
           <MailIcon class="size-4 md:size-6" />
-          miduga@gmail.com
+           alfreddovillegas@gmail.com
         </SocialPill>
       </nav>
     </SectionContainer>
 
     <SectionContainer id="experiencia">
-      <h2
-        class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80"
-      >
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80">
         <Briefcase class="size-7" />
-        Experiencia laboral
+         Experiencia laboral
       </h2>
+      <h3 class="text-xl font-semibold">
+        Desarrollador Full Stack - <span class="text-primary-200 font-semibold">Incubadora Desafío Latam</span>
+      </h3>
+      <span class="text-sm text-sky-800 dark:text-sky-200/80">01/2023 - 09/2023</span>
       <Experience />
+      <!--<img class="w-full h-auto rounded shadow-2xl shadow-white/10" src="/recomendacion.png" alt="" /> !-->
+      <Recomendation />
     </SectionContainer>
 
-    <SectionContainer id="proyectos">
-      <h2
-        class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80"
-      >
+    <SectionContainer class="lg:w-[940px]" id="proyectos">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80">
         <CodeIcon class="size-7" />
-        Proyectos
+         Proyectos
       </h2>
       <Projects />
     </SectionContainer>
 
+    <SectionContainer class="lg:w-[940px]" id="skills">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80">
+        <SkillsIcon class="size-7" />
+         Skills
+      </h2>
+      <Skills />
+    </SectionContainer>
+
     <SectionContainer id="sobre-mi">
-      <h2
-        class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80"
-      >
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80">
         <ProfileCheck class="size-7" />
-        Sobre mi
+         Sobre mi
       </h2>
       <AboutMe />
     </SectionContainer>

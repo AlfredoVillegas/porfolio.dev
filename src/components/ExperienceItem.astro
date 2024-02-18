@@ -1,48 +1,47 @@
 ---
-import LinkButton from "./LinkButton.astro"
+import LinkButton from './LinkButton.astro';
+import Www from './icons/Www.astro';
+import Youtube from './icons/Youtube.astro';
 
 interface Props {
-  title: string
-  description: string
-  link?: string
-  date: string
+  title: string;
+  description: string;
+  link?: string;
+  video?: string;
+  date: string;
 }
 
-const { title, description, link, date } = Astro.props
+const { title, description, link, video, date } = Astro.props;
 ---
 
-<div
-  class="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 border border-gray-900 bg-gray-700"
->
-</div>
-<time
-  class="mb-1 text-sm font-normal leading-none text-sky-800 dark:text-sky-200/80"
-  >{date}</time
->
-<h3 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mt-2">
+<div class="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 border border-gray-900 bg-gray-700"></div>
+<time class="mb-1 text-sm font-normal leading-none text-sky-800 dark:text-sky-200/80">{date}</time>
+<h3 class="text-lg font-semibold text-primary-200 mt-2">
   {title}
 </h3>
-<p class="mb-4 text-base font-normal dark:text-gray-200 text-pretty">
+<p class="mb-2 text-base font-normal dark:text-white/95 text-pretty">
   {description}
 </p>
-{
-  link && (
-    <LinkButton href={link}>
-      Saber más...{" "}
-      <svg
-        class="w-3 h-3 ms-2 rtl:rotate-180"
-        aria-hidden="true"
-        fill="none"
-        viewBox="0 0 14 10"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 5h12m0 0L9 1m4 4L9 9"
-        />
-      </svg>
-    </LinkButton>
-  )
-}
+<slot />
+<div class="flex gap-x-4">
+  {
+    link && (
+      <>
+        <LinkButton href={link}>
+          <Www />
+          Ir al sitio web
+        </LinkButton>
+      </>
+    )
+  }
+  {
+    video && (
+      <>
+        <LinkButton href={video}>
+          <Youtube />
+          Ver video presentación
+        </LinkButton>
+      </>
+    )
+  }
+</div>

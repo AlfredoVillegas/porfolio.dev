@@ -1,28 +1,49 @@
 ---
-import ExperienceItem from "./ExperienceItem.astro"
+import ExperienceItem from './ExperienceItem.astro';
 const EXPERIENCIE = [
   {
-    date: "Actualmente...",
-    title: "Creador de Contenido − Twitch",
-    description:
-      "Divulgo sobre programación y desarrollo web en diferentes plataformas. Galardonado como mejor creador de contenido de habla no-inglesa en 2022 y mejor comunidad en 2023 por GitHub.",
-    link: "https://twitch.tv/midudev",
+    date: 'Septiembre 2023',
+    title: 'InnovaXD',
+    description: 'Una plataforma web de noticias para escolares, apoyada por la inteligencia artificial.',
+    link: 'https://innovaxd.cl/',
+    video: 'https://www.youtube.com/watch?v=SsYOjzkb8WI'
   },
   {
-    date: "Septiembre 2022",
-    title: "Principal Frontend Engineer  − Adevinta Spain",
+    date: 'Abril 2023',
+    title: '𝐃𝐄𝐕𝐬𝐚𝐟𝐢𝐨',
     description:
-      "Responsable de la plataforma, componentes y utilidades para la creación y desarrollo de aplicaciones web. Mejora de un 30% en la entrega de software. Implantación de medidas de integración continua y despliegue con A/B testing en más de 15 equipos.",
-  },
-]
+      'Plataforma web de networking entre profesionales y empresas del área IT, con el objetivo de acompañarte en la búsqueda del Talento TI que necesitas'
+  }
+];
 ---
 
-<ol class="relative border-s border-gray-200 ml-3">
-  {
-    EXPERIENCIE.map((experiencie) => (
-      <li class="mb-10 ms-4">
-        <ExperienceItem {...experiencie} />
-      </li>
-    ))
-  }
+<ol class="mt-4 relative border-s border-gray-200 ml-1">
+  <li class="mb-10 ms-4">
+    <ExperienceItem {...EXPERIENCIE[0]}>
+      <ol class="ml-4 dark:text-gray-200/80 text-pretty">
+        <li>• Integración con inteligencia artificial ( GPT de OpenAI )</li>
+
+        <li>
+          • Desarrollamos en equipo las solicitudes de <span class="dark:text-sky-300/90"
+            >4 clientes involucrados: Microsoft, Innovación del Diario El Mercurio, Fundación Kodea y el Ministerio de
+            Educación en Chile</span
+          >.
+        </li>
+        <li>• Sprint Reviews mensuales con el cliente.</li>
+
+        <li>
+          • Desarrollé funcionalidades desde sus requisitos en el frontend hasta su servicio necesario en el backend.
+        </li>
+        <li>• Proyecto Presentado en el Summit de Fundación País Digital</li>
+      </ol>
+      <img
+        class="w-[40rem] my-3 rounded shadow-2xl shadow-white/10"
+        src="/projects/pantalla-innova.jpg"
+        alt="pantalla del proyecto innovaxD"
+      />
+    </ExperienceItem>
+  </li>
+  <li class="mb-10 ms-4">
+    <ExperienceItem {...EXPERIENCIE[1]} />
+  </li>
 </ol>
