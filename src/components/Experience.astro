@@ -2,7 +2,13 @@
 import ExperienceItem from './ExperienceItem.astro';
 const EXPERIENCIE = [
   {
-    date: 'Septiembre 2023',
+    date: 'Abril 2024 - Presente',
+    title: '',
+    description: 'Desarrollo Full Stack con React/Next.js, Strapi (CMS), APIs REST, Shopify (Liquid), CSS/SCSS, Docker.',
+    isPresent: true
+  },
+  {
+    date: '01/2023 - 09/2023',
     title: 'InnovaXD',
     description: 'Una plataforma web de noticias para escolares, apoyada por la inteligencia artificial.',
     link: 'https://innovaxd.cl/',
@@ -19,10 +25,68 @@ const EXPERIENCIE = [
 
 <ol class="mt-4 relative border-s border-gray-200 ml-1">
   <li class="mb-10 ms-4">
+    <div class="mb-2">
+      <h3 class="text-xl font-semibold">
+        Desarrollador Full Stack - <span class="text-primary-200 font-semibold">Kiwi Company</span>
+      </h3>
+    </div>
     <ExperienceItem {...EXPERIENCIE[0]}>
+      <div class="space-y-6">
+        <div>
+          <h4 class="text-lg font-semibold text-primary-200/90 mb-2">Social Store | 6 meses</h4>
+          <ol class="ml-4 dark:text-gray-200/80 text-pretty space-y-4">
+            <li>
+              <ul class="ml-4 space-y-1">
+                <li>• Sistema de tiendas en línea con autenticación (2FA) y dashboards para vendedores</li>
+                <li>• Integración de Mercado Pago y PayPal para suscripciones y compras</li>
+                <li>• Automatización de envío de credenciales vía email y WhatsApp</li>
+                <li>• Gestión de proveedores y sistema de autenticación 2FA</li>
+              </ul>
+            </li>
+            <li>
+              <p class="font-medium mb-2">🛠️ Sistema de Plantillas Personalizables</p>
+              <ul class="ml-4 space-y-1">
+                <li>• Diseñé e implementé un editor de plantillas frontend que permite a cada cliente configurar la web de su tienda</li>
+                <li>• Con preview interactivo para modificar colores, fuentes, layouts y tamaños</li>
+                <li>• Sistema de gestión de imágenes (subida propia o galería preaprobada)</li>
+                <li>• Control de versiones para guardar diversas configuraciones</li>
+                <li>• Backend flexible con configuraciones en base de datos y renderizado dinámico</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold text-primary-200/90 mb-2">Kiwi Company - Web corporativa</h4>
+          <ol class="ml-4 dark:text-gray-200/80 text-pretty space-y-1">
+            <li>• Integración de Strapi como CMS para gestión de contenidos dinámicos</li>
+            <li>• Creación de nuevos apartados (blog, portafolio interno) conectados al backend</li>
+            <li>• Optimización de rendimiento y desarrollo de componentes reutilizables</li>
+            <li>• Implementación de tema oscuro/claro con persistencia de preferencias</li>
+            <li>• Internacionalización con soporte para idiomas inglés y español.</li>
+          </ol>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-semibold text-primary-200/90 mb-2">E-commerce Shopify</h4>
+          <ol class="ml-4 dark:text-gray-200/80 text-pretty space-y-1">
+            <li>• Implementación de e-commerce en Shopify</li>
+            <li>• Desarrollo de código personalizado usando Liquid, JavaScript y CSS</li>
+            <li>• Personalización de UI y optimización de flujos de compra</li>
+          </ol>
+        </div>
+      </div>
+    </ExperienceItem>
+  </li>
+  <li class="mb-10 ms-4">
+    <div class="mb-2">
+      <h3 class="text-xl font-semibold">
+        Desarrollador Full Stack - <span class="text-primary-200 font-semibold">Incubadora Desafío Latam</span>
+      </h3>
+    </div>
+    <ExperienceItem {...EXPERIENCIE[1]}>
       <ol class="ml-4 dark:text-gray-200/80 text-pretty">
         <li>• Integración con inteligencia artificial ( GPT de OpenAI )</li>
-
         <li>
           • Desarrollamos en equipo las solicitudes de <span class="dark:text-sky-300/90"
             >4 clientes involucrados: Microsoft, Innovación del Diario El Mercurio, Fundación Kodea y el Ministerio de
@@ -30,7 +94,6 @@ const EXPERIENCIE = [
           >.
         </li>
         <li>• Sprint Reviews mensuales con el cliente.</li>
-
         <li>
           • Desarrollé funcionalidades desde sus requisitos en el frontend hasta su servicio necesario en el backend.
         </li>
@@ -44,6 +107,6 @@ const EXPERIENCIE = [
     </ExperienceItem>
   </li>
   <li class="mb-10 ms-4">
-    <ExperienceItem {...EXPERIENCIE[1]} />
+    <ExperienceItem {...EXPERIENCIE[2]} />
   </li>
 </ol>
