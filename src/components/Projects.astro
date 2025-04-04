@@ -90,7 +90,7 @@ const PROJECTS = [
   {
     title: 'Pet-Space',
     description:
-      'Web donde puedes registrar tus mascotas y pertenecer a una comunidad que se apoya en caso de extravíos, permitiéndote registrarla con una serie de atributos que ayudan a localizarla o publicarla. Aplica filtros para mejorar el éxito en tus búsquedas. Creada desde cero en equipo, fui responsable del desarrollo del back-end y la gestión de la base de datos.',
+      'Web para registrar mascotas en caso de extravíos, con una serie de atributos que ayudan a localizarla o publicarla. Aplica filtros para mejorar el éxito en tus búsquedas. Desarrollo del back-end y base de datos.',
     //link: 'https://adventjs.dev',
     image: '/projects/pet-space.jpg',
     video: 'https://drive.google.com/file/d/1OzirU5GjBT_beU12M2hJeoHVH5rjybVp/view?usp=drive_link',
@@ -117,7 +117,7 @@ const PROJECTS = [
 ];
 ---
 
-<section class="grid md:grid-cols-1 gap-x-10 gap-y-16">
+<section class="grid grid-cols-1 gap-x-8 gap-y-16 md:last:grid-cols-2 [&>*:nth-last-child(-n+2)]:md:col-span-1">
   {
     PROJECTS.map(({ image, title, description, tags, video, github }) => (
       <article>
