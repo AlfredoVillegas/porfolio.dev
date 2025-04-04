@@ -23,11 +23,33 @@ const { description, title } = Astro.props
     <title>{title}</title>
   </head>
 
-  <body class="relative text-black dark:text-white">
+  <style>
+    .dot-pattern {
+      background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    
+    .blue-glow {
+      position: absolute;
+      width: 60%;
+      height: 300px;
+      top: -50px;
+      left: -100px;
+      background: 
+        radial-gradient(ellipse at center, rgba(56, 189, 248, 0.3) 0%, rgba(29, 78, 216, 0.15) 40%, transparent 70%),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.2) 0%, rgba(29, 78, 216, 0.1) 50%, transparent 100%);
+      filter: blur(40px);
+      transform: skew(-10deg);
+      opacity: 0.8;
+    }
+  </style>
+
+  <body class="relative text-black dark:text-white overflow-x-hidden">
+    <div class="blue-glow z-0"></div>
     <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-neutral-100 dark:bg-neutral-950
+      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-neutral-100 dark:bg-neutral-950 dot-pattern
       bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(17,24,39,0.9),rgba(2,6,23,0.95))]"
     >
     </div>
     <Header />
