@@ -13,7 +13,7 @@ const { description, title } = Astro.props
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -22,37 +22,12 @@ const { description, title } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Space+Grotesk:wght@400..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   </head>
 
-  <style>
-    .dot-pattern {
-      background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-    
-    .blue-glow {
-      position: absolute;
-      width: 60%;
-      height: 300px;
-      top: -50px;
-      left: -100px;
-      background: 
-        radial-gradient(ellipse at center, rgba(56, 189, 248, 0.3) 0%, rgba(29, 78, 216, 0.15) 40%, transparent 70%),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.2) 0%, rgba(29, 78, 216, 0.1) 50%, transparent 100%);
-      filter: blur(40px);
-      transform: skew(-10deg);
-      opacity: 0.8;
-    }
-  </style>
-
-  <body class="relative text-black dark:text-white overflow-x-hidden">
-    <div class="blue-glow z-0"></div>
-    <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-neutral-100 dark:bg-neutral-950 dot-pattern
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(17,24,39,0.9),rgba(2,6,23,0.95))]"
-    >
-    </div>
+  <body class="relative text-[#261817] overflow-x-hidden bg-[#f7f7f7]">
     <Header />
     <slot />
     <Footer />
@@ -61,20 +36,27 @@ const { description, title } = Astro.props
 
 <style is:global>
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
+    --primary: #f43f5e;
+    --primary-container: #ff5a5f;
+    --on-primary: #ffffff;
+    --surface: #f7f7f7;
+    --on-surface: #261817;
+    --on-surface-variant: #484848;
+    --outline-variant: #f3f4f6;
   }
 
   html {
-    font-family: "Onest Variable", system-ui, sans-serif;
+    font-family: "Plus Jakarta Sans", "Onest Variable", system-ui, sans-serif;
     scroll-behavior: smooth;
   }
 
   body {
-    color: rgba(17, 17, 17, 0.9);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     overscroll-behavior: none;
+    color: #261817;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -83,9 +65,21 @@ const { description, title } = Astro.props
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    body {
-      color: rgba(255, 255, 255, 0.9);
+  /* Typography shortcuts */
+  .font-serif { font-family: 'Newsreader', serif; }
+  .font-mono { font-family: 'Space Grotesk', monospace; }
+  .font-sans { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+  /* Wavy SVG underline draw animation */
+  .underline-path {
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    animation: draw-underline 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+  }
+
+  @keyframes draw-underline {
+    to {
+      stroke-dashoffset: 0;
     }
   }
 </style>

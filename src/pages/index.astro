@@ -24,79 +24,237 @@ import SkillsIcon from '@/components/icons/SkillsIcon.astro';
   description="Alfredo Villegas. Desarrollador con experiencia para crear tu aplicación web"
 >
   <main class="px-4">
-    <SectionContainer class="mt-20 md:mt-6 md:py-28 pb-32">
-      <div class="flex gap-5 mb-4 items-center">
-        <img class="rounded-full size-24 object-center" src="/yo-3.png" alt="Alfredo Villegas photo" />
-        <a
-          href="https://linkedin.com/in/alfredo-villegas-backend/"
-          target="_blank"
-          rel="noopener"
-          class="flex justify-center mt-2 items-center hover:scale-105 transition"
-        >
-          <Badge>Disponible para trabajar</Badge>
-        </a>
+    <SectionContainer class="py-16 md:py-32">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div class="md:col-span-7 space-y-6 order-2 md:order-1">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="font-['Space_Grotesk'] text-xs font-bold uppercase tracking-widest text-[#006a62] bg-[#7af7e8]/30 px-3 py-1 rounded-full border border-[#006a62]/20">
+              Software Developer
+            </span>
+          </div>
+
+          <h1 class="font-['Plus_Jakarta_Sans'] text-5xl md:text-6xl font-bold text-[#261817] leading-tight">
+            Hola, soy <span class="relative inline-block text-[--primary]" id="hero-name">
+              Alfredo
+              <svg
+                class="absolute -bottom-1 left-0 w-full overflow-visible"
+                height="8"
+                viewBox="0 0 200 6"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <line
+                  x1="0" y1="3"
+                  x2="200" y2="3"
+                  fill="none"
+                  stroke="#ff5a5f"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  class="underline-path"
+                />
+              </svg>
+            </span>
+          </h1>
+
+          <h2 class="font-['Plus_Jakarta_Sans'] text-xl md:text-2xl text-[#484848] max-w-[600px] leading-relaxed">
+            <span class="font-semibold text-[#261817]">Desarrollador web Full-stack</span> 
+            con experiencia trabajando en equipo bajo metodologías ágiles, brindando soluciones y colaborando estrechamente con el cliente.
+          </h2>
+
+          <div class="flex gap-4 mt-10 flex-wrap">
+            <a 
+              href="#proyectos" 
+              class="inline-flex items-center justify-center px-6 py-3 text-base font-bold text-white bg-[--primary] rounded-xl shadow-lg hover:opacity-85 transition-all duration-300 hover:shadow-xl active:scale-95"
+            >
+              Ver Proyectos
+            </a>
+            <a 
+              href="https://drive.google.com/file/d/1lctuCumpw-PYYNqn8H-A6oHcIOyRjZdw/view?usp=drive_link" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center px-6 py-3 text-base font-bold text-gray-900 bg-white border-2  rounded-xl shadow-sm hover:bg-gray-900/5 transition-all duration-300 active:scale-95"
+            >
+              <CV class="size-5 mr-2" />
+              Descargar CV
+            </a>
+          </div>
+
+          <div class="pt-4">
+            <h3 class="font-['Space_Grotesk'] text-sm font-bold uppercase/ tracking-widest text-[#484848]/80 mb-4">
+              Conecta Conmigo
+            </h3>
+            <nav class="flex gap-3 flex-wrap">
+              <SocialPill href="https://linkedin.com/in/alfredo-villegas-backend/">
+                <LinkedInIcon class="size-5" />
+                LinkedIn
+              </SocialPill>
+              <SocialPill href="https://github.com/alfredovillegas">
+                <GitHubIcon class="size-5" />
+                GitHub
+              </SocialPill>
+              <SocialPill href="mailto:alfreddovillegas@gmail.com">
+                <MailIcon class="size-5" />
+                Email
+              </SocialPill>
+            </nav>
+          </div>
+        </div>
+
+        <div class="md:col-span-5 flex justify-center md:justify-end order-1 md:order-2">
+          <div class="photo-frame relative w-64 h-64 md:w-82 md:h-80 transition-transform hover:scale-[1.02] duration-500">
+            <div class="absolute inset-0 rounded-xl overflow-hidden bg-white shadow-lg">
+              <img
+                class="w-full h-full object-cover object-top rounded-xl  transition-all duration-700 ease-in-out"
+                src="/yo-2.PNG"
+                alt="Alfredo Villegas photo"
+              />
+            </div>
+            
+            <div class="absolute bottom-8 -left-8 z-20 animate-fade-in-up">
+              <div class="relative group overflow-hidden rounded-xl shadow-xl border border-[#e2bebc]/30">
+                <div class="spin-ring absolute inset-[-100%] z-0"></div>
+                <div class="relative z-10 bg-white m-[2px] rounded-[10px] px-4 py-3 flex items-center gap-3">
+                  <div class="w-10 h-10 bg-[#FF5A5F]/10 rounded-lg flex items-center justify-center text-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-briefcase">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 9a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -9" />
+                      <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2" />
+                      <path d="M12 12l0 .01" />
+                      <path d="M3 13a20 20 0 0 0 18 0" />
+                    </svg>
+                  </div>
+                  <div class="text-sm">
+                    <p class="font-bold text-[#261817] whitespace-nowrap">+3 años de experiencia</p>
+                    <p class="text-[#484848] text-xs whitespace-nowrap">Desarrollando soluciones web</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <h1 class="dark:text-white/95 text-3xl md:text-4xl lg:text-5xl font-bold pb-4 lg:pb-5">Hola, soy Alfredo</h1>
-      <h2 class="text-xl lg:text-2xl text-balance max-w-[700px] text-black dark:text-white/95">
-        <span>Cuento con experiencia como</span><span class="dark:text-primary-200 font-semibold">
-          Desarrollador web Full-stack</span
-        >
-         trabajando en equipo bajo metodologias agiles, brindando soluciones y colaborando estrechamente con el cliente.
-      </h2>
-
-      <nav class="flex gap-4 mt-7 flex-wrap">
-        <SocialPill href="https://linkedin.com/in/alfredo-villegas-backend/">
-          <LinkedInIcon class="size-4 md:size-5" />
-           LinkedIn
-        </SocialPill>
-        <SocialPill href="https://github.com/alfredovillegas">
-          <GitHubIcon class="size-4 md:size-6" />
-           GitHub
-        </SocialPill>
-        <SocialPill href="https://drive.google.com/file/d/1lctuCumpw-PYYNqn8H-A6oHcIOyRjZdw/view?usp=drive_link">
-          <CV class="size-4 md:size-6" />
-           Descargar CV
-        </SocialPill>
-        <SocialPill href="mailto:alfreddovillegas@gmail.com">
-          <MailIcon class="size-4 md:size-6" />
-           alfreddovillegas@gmail.com
-        </SocialPill>
-      </nav>
     </SectionContainer>
 
-    <SectionContainer id="experiencia" class="">
-      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80">
-        <Briefcase class="size-7" />
+    <!-- Option 2: Signature Break Divider -->
+    <div class="max-w-5xl mx-auto px-4 md:px-6 mb-12 md:mb-20">
+      <div class="relative flex items-center">
+        <div class="flex-grow border-t border-[#e2bebc]/30"></div>
+        <span class="flex-shrink mx-4 font-['Space_Grotesk'] text-sm font-bold tracking-widest text-[#b52330] opacity-60">
+          //
+        </span>
+        <div class="flex-grow border-t border-[#e2bebc]/30"></div>
+      </div>
+    </div>
+
+    <SectionContainer id="experiencia" class="py-12 md:py-20">
+      <h2 class="font-['Newsreader'] text-3xl md:text-4xl font-semibold mb-10 flex gap-x-3 items-center text-[#261817]">
+        <Briefcase class="size-8 text-[#b52330]" />
          Experiencia laboral
       </h2>
       <Experience />
-      <!--<img class="w-full h-auto rounded shadow-2xl shadow-white/10" src="/recomendacion.png" alt="" /> !-->
       <Recomendation />
     </SectionContainer>
 
-    <SectionContainer class="lg:w-[940px]" id="proyectos">
-      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80">
-        <CodeIcon class="size-7" />
+    <SectionContainer class="border-t border-[#e2bebc]/30 py-12 md:py-20" id="proyectos">
+      <h2 class="font-['Newsreader'] text-3xl md:text-4xl font-semibold mb-10 flex gap-x-3 items-center text-[#261817]">
+        <CodeIcon class="size-8 text-[#b52330]" />
          Proyectos
       </h2>
       <Projects />
     </SectionContainer>
 
-    <SectionContainer class="lg:w-[940px]" id="skills">
-      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80">
-        <SkillsIcon class="size-7" />
+    <SectionContainer class="border-t border-[#e2bebc]/30 py-12 md:py-20" id="skills">
+      <h2 class="font-['Newsreader'] text-3xl md:text-4xl font-semibold mb-10 flex gap-x-3 items-center text-[#261817]">
+        <SkillsIcon class="size-8 text-[#b52330]" />
          Skills
       </h2>
       <Skills />
     </SectionContainer>
 
-    <SectionContainer id="sobre-mi">
-      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center text-black/80 dark:text-white/80">
-        <ProfileCheck class="size-7" />
+    <SectionContainer id="sobre-mi" class="border-t border-[#e2bebc]/30 py-12 md:py-20">
+      <h2 class="font-['Newsreader'] text-3xl md:text-4xl font-semibold mb-10 flex gap-x-3 items-center text-[#261817]">
+        <ProfileCheck class="size-8 text-[#b52330]" />
          Sobre mi
       </h2>
       <AboutMe />
     </SectionContainer>
   </main>
 </Layout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const heroName = document.getElementById('hero-name');
+    if (!heroName) return;
+
+    const underlinePath = heroName.querySelector('.underline-path') as SVGLineElement | null;
+    if (!underlinePath) return;
+
+    const replayAnimation = () => {
+      underlinePath.style.animation = 'none';
+      // Force reflow to reset the animation
+      void underlinePath.getBoundingClientRect();
+      underlinePath.style.animation = '';
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            replayAnimation();
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    observer.observe(heroName);
+  });
+</script>
+
+<style>
+  .spin-ring {
+    background: conic-gradient(
+      from 0deg,
+      #ff5a5f 0deg,
+      #b52330 90deg,
+      #006a62 180deg,
+      #7af7e8 270deg,
+      #ff5a5f 360deg
+    );
+    filter: blur(3px);
+    opacity: 1;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    animation: spin-border 6s linear infinite;
+  }
+
+  .group {
+    overflow: hidden;
+  }
+
+  .photo-frame:hover .spin-ring {
+    animation-duration: 10s;
+  }
+
+  @keyframes spin-border {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
