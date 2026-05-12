@@ -36,23 +36,12 @@ import SkillsIcon from '@/components/icons/SkillsIcon.astro';
           <h1 class="font-['Plus_Jakarta_Sans'] text-5xl md:text-6xl font-bold text-[#261817] leading-tight">
             Hola, soy <span class="relative inline-block text-[--primary]" id="hero-name">
               Alfredo
-              <svg
-                class="absolute -bottom-1 left-0 w-full overflow-visible"
-                height="8"
-                viewBox="0 0 200 6"
-                preserveAspectRatio="none"
+              <img
+                src="/subra.webp"
+                class="absolute top-[0] left-0 w-full h-auto underline-path pointer-events-none -z-10"
+                alt=""
                 aria-hidden="true"
-              >
-                <line
-                  x1="0" y1="3"
-                  x2="200" y2="3"
-                  fill="none"
-                  stroke="#ff5a5f"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  class="underline-path"
-                />
-              </svg>
+              />
             </span>
           </h1>
 
@@ -101,16 +90,61 @@ import SkillsIcon from '@/components/icons/SkillsIcon.astro';
         </div>
 
         <div class="md:col-span-5 flex justify-center md:justify-end order-1 md:order-2">
-          <div class="photo-frame relative w-64 h-64 md:w-82 md:h-80 transition-transform hover:scale-[1.02] duration-500">
-            <div class="absolute inset-0 rounded-xl overflow-hidden bg-white shadow-lg">
-              <img
-                class="w-full h-full object-cover object-top rounded-xl  transition-all duration-700 ease-in-out"
-                src="/yo-2.PNG"
-                alt="Alfredo Villegas photo"
-              />
+          <div class="relative w-[300px] h-[360px] md:w-[400px] md:h-[440px]">
+            <!-- Glow Cian a la derecha -->
+            <div class="absolute top-[50%] -right-[1%] w-[90%] aspect-square bg-[#b0e0e6] rounded-full mix-blend-multiply filter blur-[90px] opacity-80 -z-30 pointer-events-none"></div>
+            <!-- Glow Rosa a la izquierda -->
+            <div class="absolute -top-[5%] left-[5%] w-[90%] aspect-square bg-[#f9c4cc] rounded-full mix-blend-multiply filter blur-[90px] opacity-70 -z-30 pointer-events-none"></div>
+            <!-- 2. Patrón de puntos -->
+            <div class="absolute top-[2%] right-[-20%] w-48 h-48 opacity-40 -z-20 pointer-events-none">
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="dot-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <circle fill="#cbd5e1" cx="2" cy="2" r="1.5"></circle>
+                  </pattern>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#dot-pattern)"></rect>
+              </svg>
             </div>
-            
-            <div class="absolute bottom-8 -left-8 z-20 animate-fade-in-up">
+            <!-- 3. Circulo rojo -->
+            <div class="absolute top-[10%] left-[5%] w-[85%] aspect-square rounded-full -z-10" style="background: radial-gradient(circle at 45% 40%, #ffffff 0%, #fff0f2 25%, #fdd0d8 50%, #f9899e 72%, #f43f5e 88%, transparent 100%); filter: blur(2px);"></div>
+            <!-- 4. Línea Curva (Arco) Cian -->
+            <div class="absolute top-[41%] -right-[15%] w-[100%] aspect-square -z-20 pointer-events-none">
+              <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="arc-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#7ecfc9" stop-opacity="0.7"/>
+                    <stop offset="40%" stop-color="#b0e0e6" stop-opacity="0.5"/>
+                    <stop offset="70%" stop-color="#d4efef" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#e0f7fa" stop-opacity="0.05"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="98" fill="none" stroke="url(#arc-gradient)" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <!-- 5. Estrella/Destello Rojo Flotante -->
+            <div class="absolute top-[25%] left-[0%] text-[#f43f5e] animate-float pointer-events-none z-[5]">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C12 0 12 10.5 24 12C24 12 12 13.5 12 24C12 24 12 13.5 0 12C0 12 12 10.5 12 0Z" />
+              </svg>
+            </div>
+            <!-- 6. Medalla Flotante de Código </> -->
+            <div class="absolute top-[15%] right-[10%] bg-white rounded-full w-14 h-14 md:w-16 md:h-16 flex items-center justify-center shadow-[0_15px_35px_-5px_rgba(0,0,0,0.1)] z-20 animate-float-delayed">
+              <span class="text-[#f43f5e] font-bold text-lg md:text-xl tracking-tighter">&lt;/&gt;</span>
+            </div>
+            <div class="relative w-full h-full flex items-end justify-center z-10 mt-[-2.5rem]">
+              <div class="photo-frame relative w-[240px] h-[320px] md:w-[280px] md:h-[380px] transition-transform hover:scale-[1.02] duration-500">
+                <div class="absolute inset-0 rounded-xl overflow-hidden  bg-transparent ">
+                  <img
+                    class="w-full h-full object-cover object-top rounded-xl/ transition-all duration-700 ease-in-out"
+                    src="/yo-no-bg.webp"
+                    alt="Alfredo Villegas photo"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- 8. Tarjeta de Experiencia -->
+            <div class="absolute bottom-[8%]/ bottom-[14%] -right-[5%] z-30 animate-fade-in-up">
               <div class="relative group overflow-hidden rounded-xl shadow-xl border border-[#e2bebc]/30">
                 <div class="spin-ring absolute inset-[-100%] z-0"></div>
                 <div class="relative z-10 bg-white m-[2px] rounded-[10px] px-4 py-3 flex items-center gap-3">
@@ -130,6 +164,7 @@ import SkillsIcon from '@/components/icons/SkillsIcon.astro';
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -186,7 +221,7 @@ import SkillsIcon from '@/components/icons/SkillsIcon.astro';
     const heroName = document.getElementById('hero-name');
     if (!heroName) return;
 
-    const underlinePath = heroName.querySelector('.underline-path') as SVGLineElement | null;
+    const underlinePath = heroName.querySelector('.underline-path') as HTMLImageElement | null;
     if (!underlinePath) return;
 
     const replayAnimation = () => {
@@ -255,6 +290,35 @@ import SkillsIcon from '@/components/icons/SkillsIcon.astro';
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Animaciones flotantes para las figuras decorativas */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  .animate-float-delayed {
+    animation: float 4s ease-in-out 2s infinite;
+  }
+
+  .underline-path {
+    animation: underline-draw 0.8s ease-out forwards;
+    transform-origin: left;
+  }
+
+  @keyframes underline-draw {
+    from {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+    to {
+      transform: scaleX(1);
+      opacity: 1;
     }
   }
 </style>
