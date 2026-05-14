@@ -79,6 +79,53 @@ const TIMELINE = [
 
   <!-- Zigzag Timeline -->
   <div class="timeline" id="exp-timeline">
+
+    <!-- ═══ Serpentine SVG connector — positions set by JS ═══ -->
+    <svg
+      class="timeline-svg"
+      id="timeline-path-svg"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%"   stop-color="#b52330" stop-opacity="0.75" />
+          <stop offset="50%"  stop-color="#e86a77" stop-opacity="0.55" />
+          <stop offset="100%" stop-color="#006a62" stop-opacity="0.65" />
+        </linearGradient>
+      </defs>
+
+      <!--
+      <!-- Dashed visible path -->
+      <path
+        id="timeline-main-path"
+        stroke="url(#lineGrad)"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-dasharray="8 8"
+        fill="none"
+        class="main-path"
+      />
+
+      <!-- Dot groups — JS positions them via cx/cy after measuring DOM -->
+      {TIMELINE.flatMap((_, i) => {
+        // Alternating colors based on index: even (left side) = red, odd (right side) = teal
+        const color = i % 2 === 0 ? '#b52330' : '#006a62';
+        return [
+          <g class="path-dot-group" data-index={i * 2} data-fill={color}>
+            <circle class="path-dot-ring" r="17" fill={color} fill-opacity="0.16" />
+            <circle class="path-dot"      r="9"  fill={color} />
+          </g>,
+          <g class="path-dot-group" data-index={i * 2 + 1} data-fill={color}>
+            <circle class="path-dot-ring" r="17" fill={color} fill-opacity="0.16" />
+            <circle class="path-dot"      r="9"  fill={color} />
+          </g>
+        ];
+      })}
+    </svg>
+    <!-- ══════════════════════════════════════════════════════ -->
     {TIMELINE.map((item, i) => {
       const isLeft = item.side === 'left';
       
@@ -230,6 +277,36 @@ const TIMELINE = [
     z-index: 1;
   }
 
+  /* ── Serpentine SVG line ────────────────────────────────────── */
+  .timeline-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+  }
+
+  /*
+   * The dashed path is always fully visible.
+   */
+  .main-path {
+    opacity: 1;
+  }
+
+  /* Accent dots — hidden, pop in with spring scale */
+  .path-dot,
+  .path-dot-ring {
+    transform-origin: center;
+  }
+
+  /* Pulsing ring on each dot - removed animation */
+  .path-dot-ring {
+    opacity: 0.16;
+  }
+
   /* ── Entry wrapper ────────────────────────────────────────── */
   .timeline-entry-wrapper {
     position: relative;
@@ -242,7 +319,10 @@ const TIMELINE = [
     align-items: center;
     gap: 4rem;
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: 8rem;
+  }
+  .timeline-entry:last-child {
+    margin-bottom: 0;
   }
 
   /* Left: card | image */
@@ -502,29 +582,151 @@ const TIMELINE = [
 </style>
 
 <script>
+  /* ─────────────────────────────────────────────────────────────
+   *  Timeline: dynamic serpentine SVG connector
+   *  Strategy:
+   *    1. After DOM renders, measure each .timeline-entry-wrapper
+   *    2. Compute an anchor point per entry (near the image corner)
+   *    3. Build a cubic-bezier path through those points
+   *    4. Place each dot group at its anchor
+   *    5. Use IntersectionObserver to trigger the draw animation
+   * ─────────────────────────────────────────────────────────────*/
+
+  const DASH = 11;   // visible dash length (px)
+  const GAP  = 8;    // visible gap length (px)
+
+  /**
+   * Build a path d-string connecting the points using the geometric pattern from code.html.
+   * pts array has 2 points per card: [entry0, exit0, entry1, exit1, entry2, exit2, ...]
+   * We ONLY draw paths connecting an exit point to the NEXT entry point.
+   * This leaves a gap over the card itself, creating the illusion that the line goes behind it.
+   */
+  function buildPathD(pts: { x: number; y: number }[], containerW: number): string {
+    if (pts.length < 4) return '';
+    let d = '';
+
+    // Loop through the gaps between cards
+    for (let i = 1; i < pts.length - 1; i += 2) {
+      const exitPt = pts[i];
+      const entryPt = pts[i + 1];
+
+      const yMid = exitPt.y + (entryPt.y - exitPt.y) / 2;
+      
+      // Calculate a safe curve radius
+      const maxR = Math.min(
+        50, 
+        Math.abs(entryPt.y - exitPt.y) / 2, 
+        Math.abs(entryPt.x - exitPt.x) / 2
+      );
+      const r = Math.max(1, maxR); // Ensure non-zero
+      
+      const dirX = exitPt.x < entryPt.x ? 1 : -1;
+
+      // Move to the exit point of the current card
+      d += `M ${exitPt.x} ${exitPt.y} `;
+      
+      // Draw straight line down to the curve start
+      d += `L ${exitPt.x} ${yMid - r} `;
+      // Draw curve to horizontal
+      d += `Q ${exitPt.x} ${yMid} ${exitPt.x + r * dirX} ${yMid} `;
+      // Draw straight line across
+      d += `L ${entryPt.x - r * dirX} ${yMid} `;
+      // Draw curve to vertical down
+      d += `Q ${entryPt.x} ${yMid} ${entryPt.x} ${yMid + r} `;
+      // Draw straight line down to the entry point of the next card
+      d += `L ${entryPt.x} ${entryPt.y} `;
+    }
+    
+    return d;
+  }
+
+  function buildTimeline() {
+    const timeline  = document.getElementById('exp-timeline');
+    const svg       = document.getElementById('timeline-path-svg') as SVGSVGElement | null;
+    const mainPath  = document.getElementById('timeline-main-path') as SVGPathElement | null;
+    const dotGroups = document.querySelectorAll<SVGGElement>('.path-dot-group');
+    const entries   = document.querySelectorAll<HTMLElement>('.timeline-entry-wrapper');
+
+    if (!timeline || !svg || !mainPath || !entries.length) return;
+
+    /* ── 1. Size the SVG to match the live container ── */
+    const containerRect = timeline.getBoundingClientRect();
+    const W = containerRect.width;
+    const H = containerRect.height;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('width',  `${W}`);
+    svg.setAttribute('height', `${H}`);
+
+    /* ── 2. Measure anchor for each entry ── */
+    const pts: { x: number; y: number }[] = [];
+
+    entries.forEach((entry, i) => {
+      // Measure the actual card+image grid, not the wrapper that includes annotation
+      const innerEl = entry.querySelector<HTMLElement>('.timeline-entry') ?? entry;
+      const r       = innerEl.getBoundingClientRect();
+      const side    = entry.dataset.side; // 'left' | 'right'
+
+      // left entries → image is on the right → anchor on the right side
+      // right entries → image is on the left → anchor on the left  side
+      const x = side === 'left' ? W * 0.77 : W * 0.23;
+
+      // Create TWO points for each entry: Entry point (top) and Exit point (bottom)
+      // We add a vertical gap (e.g., 30px) so the dots don't touch the images
+      const verticalGap = 30;
+      const yTop    = r.top    - containerRect.top - verticalGap;
+      const yBottom = r.bottom - containerRect.top + verticalGap;
+
+      pts.push({ x, y: yTop });    // index i*2
+      pts.push({ x, y: yBottom }); // index i*2 + 1
+    });
+
+    /* ── 3. Build and set path ── */
+    const d = buildPathD(pts, W);
+    mainPath.setAttribute('d', d);
+
+
+    /* ── 4. Position dots ── */
+    dotGroups.forEach((g) => {
+      const idx = parseInt(g.dataset.index ?? '0', 10);
+      const pt  = pts[idx];
+      if (!pt) return;
+      // Move the group: translate its children by setting a transform
+      g.setAttribute('transform', `translate(${pt.x}, ${pt.y})`);
+    });
+
+
+  }
+
   function initTimeline() {
     const entries = document.querySelectorAll('.timeline-entry-wrapper');
     if (!entries.length) return;
 
-    // Add hidden class via JS so content is visible without JS
+    /* Card scroll-reveal */
     entries.forEach((el) => el.classList.add('js-reveal'));
-
-    const observer = new IntersectionObserver(
+    const cardObserver = new IntersectionObserver(
       (obs) => {
-        obs.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
+        obs.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            cardObserver.unobserve(e.target);
           }
         });
       },
       { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
     );
+    entries.forEach((el) => cardObserver.observe(el));
 
-    entries.forEach((el) => observer.observe(el));
+    /* Build the SVG path after a short rAF so layout is complete */
+    requestAnimationFrame(() => requestAnimationFrame(buildTimeline));
   }
 
-  // Works with or without Astro View Transitions
+  /* Rebuild on resize (debounced) */
+  let _resizeTimer: ReturnType<typeof setTimeout>;
+  window.addEventListener('resize', () => {
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(buildTimeline, 150);
+  });
+
   document.addEventListener('astro:page-load', initTimeline);
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTimeline);
