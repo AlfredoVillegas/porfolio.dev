@@ -1,6 +1,20 @@
 ---
 // Timeline entries — matching the design layout
 const TIMELINE = [
+    {
+    period: 'Abril 2024 · Actualidad',
+    role: 'Desarrollador Full-stack',
+    company: 'Kiwi Company',
+    companyLogo: '🥝',
+    companyColor: '#22c55e',
+    isPresent: true,
+    description:
+      'CRM integral para dealer de autos con gestión de ventas, seguimiento de clientes y control de inventario vehicular.',
+    tags: ['Next.js', 'React', 'Node.js', 'PostgreSQL', 'Express.js', 'WebSocket'],
+    image: '/projects/flowsups.webp',
+    side: 'left' as const,
+    annotation: { text: 'Actualmente en', highlight: 'Kiwi Company' },
+  },
   {
     period: 'Abril 2024 · Actualidad',
     role: 'Desarrollador Full-stack Senior',
@@ -112,7 +126,7 @@ const TIMELINE = [
       <!-- Dot groups — JS positions them via cx/cy after measuring DOM -->
       {TIMELINE.flatMap((_, i) => {
         // Alternating colors based on index: even (left side) = red, odd (right side) = teal
-        const color = i % 2 === 0 ? '#b52330' : '#006a62';
+        const color = i % 2 === 0 ? '#ff5a5f' : 'teal';
         return [
           <g class="path-dot-group" data-index={i * 2} data-fill={color}>
             <circle class="path-dot-ring" r="17" fill={color} fill-opacity="0.16" />
@@ -246,9 +260,9 @@ const TIMELINE = [
     margin-bottom: 1rem;
   }
   .exp-title em {
-    font-style: italic;
+    font-style: normal;
     font-family: 'Newsreader', serif;
-    color: #b52330;
+    color: var(--primary);
   }
   .header-sparkle {
     position: absolute;
@@ -364,7 +378,7 @@ const TIMELINE = [
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.06em;
-    color: #b52330;
+    color: var(--primary);
     display: block;
     margin-bottom: 0.45rem;
   }
@@ -417,7 +431,7 @@ const TIMELINE = [
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
-    color: #b52330;
+    color: var(--primary);
     background: #fff5f6;
     border: 1px solid #fdd0d8;
     border-radius: 999px;
@@ -440,7 +454,7 @@ const TIMELINE = [
     margin-top: 0.25rem;
   }
   .entry-link:hover {
-    color: #b52330;
+    color: var(--primary);
   }
 
   /* ── Image column ──────────────────────────────────────────── */
@@ -510,7 +524,7 @@ const TIMELINE = [
     line-height: 1.4;
   }
   .annotation-highlight {
-    color: #b52330;
+    color: var(--primary);
     font-weight: 700;
     font-style: italic;
   }
