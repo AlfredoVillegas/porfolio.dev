@@ -2,67 +2,54 @@
 // Timeline entries — matching the design layout
 const TIMELINE = [
     {
-    period: 'Abril 2024 · Actualidad',
+    period: 'Diciembre 2024 · Marzo 2026',
     role: 'Desarrollador Full-stack',
     company: 'Kiwi Company',
-    companyLogo: '🥝',
+    companyLogo: '/kiwi-bird.webp',
     companyColor: '#22c55e',
     isPresent: true,
     description:
-      'CRM integral para dealer de autos con gestión de ventas, seguimiento de clientes y control de inventario vehicular.',
-    tags: ['Next.js', 'React', 'Node.js', 'PostgreSQL', 'Express.js', 'WebSocket'],
-    image: '/projects/flowsups.webp',
+      'CRM integral para dealer de autos (cliente externo) enfocado en la gestión de ventas e inventario vehicular. Implementé módulos clave como:<br/>• Llamadas telefónicas integradas directamente en la web.<br/>• Sockets en tiempo real y mensajería SMS con Twilio.<br/>• Sistema de reportes de ventas y rendimiento de asesores.',
+    tags: ['Next.js', 'React', 'Express.js', 'WebSocket', 'PostgreSQL'],
+    image: '/projects/flowsups-3.webp',
     side: 'left' as const,
     annotation: { text: 'Actualmente en', highlight: 'Kiwi Company' },
   },
   {
-    period: 'Abril 2024 · Actualidad',
-    role: 'Desarrollador Full-stack Senior',
+    period: 'Abril 2024 · Noviembre 2024',
+    role: 'Desarrollador Full-stack',
     company: 'Kiwi Company',
-    companyLogo: '🥝',
+    companyLogo: '/kiwi-bird.webp',
     companyColor: '#22c55e',
     isPresent: true,
     description:
-      'Lideré la arquitectura y desarrollo de Social Store: un sistema multi-tenant de tiendas en línea con autenticación 2FA, dashboards para vendedores, integración de Mercado Pago y PayPal, y un editor de plantillas con preview interactivo.',
-    tags: ['Next.js', 'Node.js', 'NestJS', 'React', 'Strapi', 'Docker'],
-    image: '/projects/social-s-1.webp',
-    side: 'left' as const,
-    annotation: { text: 'Actualmente en', highlight: 'Kiwi Company' },
-  },
-  {
-    period: '2024',
-    role: 'Web Corporativa & CMS',
-    company: 'Kiwi Company',
-    companyLogo: '🥝',
-    companyColor: '#22c55e',
-    description:
-      'Integré Strapi como CMS para gestión de contenidos dinámicos. Creé secciones de blog y portafolio conectadas al backend. Implementé tema oscuro/claro e internacionalización en español/inglés.',
-    tags: ['Strapi', 'Next.js', 'CSS', 'i18n'],
+      'Lideré la arquitectura y desarrollo de Social Store (cliente externo), un <strong>sistema multi-tenant de tiendas online</strong> con dashboards para vendedores, autenticación 2FA e integraciones de pago. Desarrolle un <strong>sistema editor de plantillas</strong> que incluye: <br/>• Personalización interactiva de layouts, textos, fuentes y colores.<br/>• Gestión de imágenes (subida propia o galería).<br/>• Control de versiones para diseños.',
+    tags: ['Next.js', 'Node.js', 'NestJS', 'React', 'Docker', 'Pasarela de pagos'],
     image: '/projects/social-s-1.webp',
     side: 'right' as const,
-    annotation: { text: 'Creciendo y generando', highlight: 'impacto en equipo' },
+    annotation: { text: 'Actualmente en', highlight: 'Kiwi Company' },
   },
   {
     period: '2024',
-    role: 'E-commerce Shopify',
+    role: 'Desarrollo Web & E-commerce',
     company: 'Kiwi Company',
-    companyLogo: '🥝',
+    companyLogo: '/kiwi-bird.webp',
     companyColor: '#22c55e',
     description:
-      'Implementé tiendas en Shopify con código personalizado usando Liquid, JavaScript y CSS. Optimicé el flujo de compra y la experiencia de usuario de varios clientes.',
-    tags: ['Shopify', 'Liquid', 'JavaScript', 'CSS'],
-    image: '/projects/social-s-1.webp',
+      '<strong>Web Corporativa & CMS:</strong> Integré Strapi para gestión de contenidos dinámicos. Creé secciones de blog y portafolio con internacionalización.<br/><br/><strong>E-commerce Shopify:</strong> Implementé tiendas con código personalizado usando Liquid, JavaScript y CSS, optimizando el flujo de compra de varios clientes.',
+    tags: ['Strapi', 'Next.js', 'Shopify', 'Liquid', 'JavaScript', 'CSS', 'i18n'],
+    image: '/projects/kiwi-company.webp',
     side: 'left' as const,
-    annotation: { text: 'Mis primeros proyectos', highlight: 'como freelancer' },
+    annotation: { text: 'Múltiples proyectos', highlight: 'en paralelo' },
   },
   {
     period: 'Enero 2023 · Octubre 2023',
     role: 'Desarrollador Full-stack',
     company: 'Incubadora Desafío Latam',
-    companyLogo: '🚀',
+    companyLogo: '/desafiolatam_logo.jpeg',
     companyColor: '#6366f1',
     description:
-      'Desarrollé InnovaXD: plataforma web de noticias para escolares con inteligencia artificial (GPT OpenAI). Proyecto presentado en el Summit de Fundación País Digital, con clientes como Microsoft, Diario El Mercurio, Fundación Kodea y el Ministerio de Educación.',
+      'Desarrollé InnovaXD: plataforma web de noticias para escolares con <strong>inteligencia artificial</strong> (GPT OpenAI). Proyecto presentado en el Summit de Fundación País Digital, con clientes como Diario El Mercurio, Fundación Kodea y el Ministerio de Educación en Chile.',
     tags: ['React', 'Node.js', 'OpenAI', 'MongoDB', 'Express'],
     image: '/projects/pantalla-innova.jpg',
     link: 'https://innovaxd.cl/',
@@ -125,24 +112,35 @@ const TIMELINE = [
 
       <!-- Dot groups — JS positions them via cx/cy after measuring DOM -->
       {TIMELINE.flatMap((_, i) => {
-        // Alternating colors based on index: even (left side) = red, odd (right side) = teal
         const color = i % 2 === 0 ? '#ff5a5f' : 'teal';
-        return [
-          <g class="path-dot-group" data-index={i * 2} data-fill={color}>
-            <circle class="path-dot-ring" r="17" fill={color} fill-opacity="0.16" />
-            <circle class="path-dot"      r="9"  fill={color} />
-          </g>,
-          <g class="path-dot-group" data-index={i * 2 + 1} data-fill={color}>
-            <circle class="path-dot-ring" r="17" fill={color} fill-opacity="0.16" />
-            <circle class="path-dot"      r="9"  fill={color} />
-          </g>
-        ];
+        const dots = [];
+        
+        // Dot at entry point of the card (except for the very first card)
+        if (i > 0) {
+          dots.push(
+            <g class="path-dot-group" data-index={i * 2} data-fill={color}>
+              <circle class="path-dot-ring" r="17" fill={color} fill-opacity="0.16" />
+              <circle class="path-dot"      r="9"  fill={color} />
+            </g>
+          );
+        }
+        
+        // Dot at exit point of the card (except for the very last card)
+        if (i < TIMELINE.length - 1) {
+          dots.push(
+            <g class="path-dot-group" data-index={i * 2 + 1} data-fill={color}>
+              <circle class="path-dot-ring" r="17" fill={color} fill-opacity="0.16" />
+              <circle class="path-dot"      r="9"  fill={color} />
+            </g>
+          );
+        }
+        
+        return dots;
       })}
     </svg>
     <!-- ══════════════════════════════════════════════════════ -->
     {TIMELINE.map((item, i) => {
       const isLeft = item.side === 'left';
-      
       return (
         <div class="timeline-entry-wrapper" data-index={i} data-side={item.side}>
           {/* The entry row */}
@@ -150,12 +148,18 @@ const TIMELINE = [
             {/* Content card */}
             <div class="entry-card">
               <span class="entry-period">{item.period}</span>
-              <h3 class="entry-role">{item.role}</h3>
+              <h3 class="entry-role text-slate-700">{item.role}</h3>
               <div class="entry-company">
-                <span class="company-logo">{item.companyLogo}</span>
+                <span class="company-logo">
+                  {item.companyLogo.includes('/') ? (
+                    <img src={item.companyLogo} alt={item.company} class="company-logo-img" />
+                  ) : (
+                    item.companyLogo
+                  )}
+                </span>
                 <span class="company-name">{item.company}</span>
               </div>
-              <p class="entry-desc">{item.description}</p>
+              <p class="entry-desc" set:html={item.description}></p>
               <div class="entry-tags">
                 {item.tags.map(tag => (
                   <span class="tag">{tag}</span>
@@ -175,28 +179,31 @@ const TIMELINE = [
             </div>
           </div>
 
-          {/* Annotation - positioned below the entry */}
-          {item.annotation && (
+          {/* Annotation - positioned below the entry (Disabled for now) */}
+         
             <div class={`annotation ${isLeft ? 'annotation-right' : 'annotation-left'}`}>
+              {false && item.annotation && (
               <svg class="annotation-arrow" viewBox="0 0 60 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {isLeft ? (
+                                    <Fragment>
+                    <path d="M10 5 Q40 5 45 25 Q50 45 30 40" stroke="#b52330" stroke-width="1.4" stroke-dasharray="4 3" fill="none" />
+                    <path d="M36 34 L30 40 L38 42" stroke="#b52330" stroke-width="1.4" fill="none" stroke-linecap="round" />
+                  </Fragment>
+                ) : (
                   <Fragment>
                     <path d="M50 5 Q20 5 15 25 Q10 45 30 40" stroke="#b52330" stroke-width="1.4" stroke-dasharray="4 3" fill="none" />
                     <path d="M24 34 L30 40 L22 42" stroke="#b52330" stroke-width="1.4" fill="none" stroke-linecap="round" />
                   </Fragment>
-                ) : (
-                  <Fragment>
-                    <path d="M10 5 Q40 5 45 25 Q50 45 30 40" stroke="#b52330" stroke-width="1.4" stroke-dasharray="4 3" fill="none" />
-                    <path d="M36 34 L30 40 L38 42" stroke="#b52330" stroke-width="1.4" fill="none" stroke-linecap="round" />
-                  </Fragment>
+
                 )}
               </svg>
               <p class="annotation-text">
-                {item.annotation.text}{' '}
+                {item.annotation.text}<br/>
                 <span class="annotation-highlight">{item.annotation.highlight}</span>
               </p>
+            )}
             </div>
-          )}
+          
         </div>
       );
     })}
@@ -324,6 +331,10 @@ const TIMELINE = [
   /* ── Entry wrapper ────────────────────────────────────────── */
   .timeline-entry-wrapper {
     position: relative;
+    margin-bottom: 12rem;
+  }
+  .timeline-entry-wrapper:last-child {
+    margin-bottom: 0;
   }
 
   /* ── Each entry ────────────────────────────────────────────── */
@@ -333,10 +344,6 @@ const TIMELINE = [
     align-items: center;
     gap: 4rem;
     position: relative;
-    margin-bottom: 8rem;
-  }
-  .timeline-entry:last-child {
-    margin-bottom: 0;
   }
 
   /* Left: card | image */
@@ -407,12 +414,20 @@ const TIMELINE = [
     background: #f7f7f7;
     border-radius: 0.5rem;
     border: 1px solid #e5e7eb;
+    overflow: hidden;
+  }
+  .company-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.2rem;
   }
   .company-name {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.92rem;
     font-weight: 700;
-    color: #484848;
+    /* color: #484848; */
+    color: #334155;
   }
   .entry-desc {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -461,6 +476,7 @@ const TIMELINE = [
   .entry-image-wrap {
     position: relative;
     width: fit-content;
+    background: transparent;
   }
   .image-glow {
     position: absolute;
@@ -472,20 +488,20 @@ const TIMELINE = [
     pointer-events: none;
   }
   .entry-img {
-    width: 380px;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    border-radius: 1rem;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    width: 440px;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
     display: block;
     position: relative;
     z-index: 1;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.4s ease;
   }
 
   .timeline-entry:hover .entry-img {
     transform: scale(1.03);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.15);
   }
 
   /* ── Annotation ────────────────────────────────────────────── */
