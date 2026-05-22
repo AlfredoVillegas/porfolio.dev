@@ -560,6 +560,15 @@ const TIMELINE = [
 
   /* ── Responsive ────────────────────────────────────────────── */
   @media (max-width: 768px) {
+    .exp-header {
+      margin-bottom: 3.5rem;
+    }
+    .timeline-entry-wrapper {
+      margin-bottom: 4rem;
+    }
+    .timeline-svg {
+      display: none;
+    }
     .timeline::before {
       content: '';
       position: absolute;
@@ -578,7 +587,7 @@ const TIMELINE = [
     }
     .timeline-entry {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 1.5rem;
     }
     .entry-left .entry-card,
     .entry-right .entry-card {
@@ -631,6 +640,17 @@ const TIMELINE = [
    * We ONLY draw paths connecting an exit point to the NEXT entry point.
    * This leaves a gap over the card itself, creating the illusion that the line goes behind it.
    */
+  /** Layout Y inside timeline — not affected by reveal transforms on children. */
+  function offsetTopIn(container: HTMLElement, el: HTMLElement): number {
+    let top = 0;
+    let node: HTMLElement | null = el;
+    while (node && node !== container) {
+      top += node.offsetTop;
+      node = node.offsetParent as HTMLElement | null;
+    }
+    return top;
+  }
+
   function buildPathD(pts: { x: number; y: number }[], containerW: number): string {
     if (pts.length < 4) return '';
     let d = '';
@@ -679,6 +699,12 @@ const TIMELINE = [
 
     if (!timeline || !svg || !mainPath || !entries.length) return;
 
+    /* Mobile: solo línea lateral (::before), sin conector SVG */
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      mainPath.setAttribute('d', '');
+      return;
+    }
+
     /* ── 1. Size the SVG to match the live container ── */
     const containerRect = timeline.getBoundingClientRect();
     const W = containerRect.width;
@@ -690,55 +716,56 @@ const TIMELINE = [
     /* ── 2. Measure anchor for each entry ── */
     const pts: { x: number; y: number }[] = [];
 
-    entries.forEach((entry, i) => {
-      // Measure the actual card+image grid, not the wrapper that includes annotation
+    entries.forEach((entry) => {
       const innerEl = entry.querySelector<HTMLElement>('.timeline-entry') ?? entry;
-      const r       = innerEl.getBoundingClientRect();
-      const side    = entry.dataset.side; // 'left' | 'right'
+      const side    = entry.dataset.side;
 
-      // left entries → image is on the right → anchor on the right side
-      // right entries → image is on the left → anchor on the left  side
       const x = side === 'left' ? W * 0.77 : W * 0.23;
 
-      // Create TWO points for each entry: Entry point (top) and Exit point (bottom)
-      // We add a vertical gap (e.g., 30px) so the dots don't touch the images
       const verticalGap = 30;
-      const yTop    = r.top    - containerRect.top - verticalGap;
-      const yBottom = r.bottom - containerRect.top + verticalGap;
+      const rowTop      = offsetTopIn(timeline, innerEl);
+      const yTop        = rowTop - verticalGap;
+      const yBottom     = rowTop + innerEl.offsetHeight + verticalGap;
 
-      pts.push({ x, y: yTop });    // index i*2
-      pts.push({ x, y: yBottom }); // index i*2 + 1
+      pts.push({ x, y: yTop });
+      pts.push({ x, y: yBottom });
     });
 
     /* ── 3. Build and set path ── */
     const d = buildPathD(pts, W);
     mainPath.setAttribute('d', d);
 
-
     /* ── 4. Position dots ── */
     dotGroups.forEach((g) => {
       const idx = parseInt(g.dataset.index ?? '0', 10);
       const pt  = pts[idx];
       if (!pt) return;
-      // Move the group: translate its children by setting a transform
       g.setAttribute('transform', `translate(${pt.x}, ${pt.y})`);
     });
-
-
   }
 
-  function initTimeline() {
-    const entries = document.querySelectorAll('.timeline-entry-wrapper');
-    if (!entries.length) return;
+  let _rebuildTimer: ReturnType<typeof setTimeout>;
+  function scheduleBuildTimeline() {
+    clearTimeout(_rebuildTimer);
+    _rebuildTimer = setTimeout(() => requestAnimationFrame(buildTimeline), 50);
+  }
 
-    /* Card scroll-reveal */
+  let _timelineInitialized = false;
+
+  function initTimeline() {
+    const timeline = document.getElementById('exp-timeline');
+    const entries = document.querySelectorAll<HTMLElement>('.timeline-entry-wrapper');
+    if (!timeline || !entries.length) return;
+
     entries.forEach((el) => el.classList.add('js-reveal'));
+
     const cardObserver = new IntersectionObserver(
       (obs) => {
         obs.forEach((e) => {
           if (e.isIntersecting) {
             e.target.classList.add('is-visible');
             cardObserver.unobserve(e.target);
+            scheduleBuildTimeline();
           }
         });
       },
@@ -746,18 +773,25 @@ const TIMELINE = [
     );
     entries.forEach((el) => cardObserver.observe(el));
 
-    /* Build the SVG path after a short rAF so layout is complete */
+    timeline.querySelectorAll<HTMLImageElement>('.entry-img').forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener('load', scheduleBuildTimeline, { once: true });
+      }
+    });
+
+    if (!_timelineInitialized) {
+      _timelineInitialized = true;
+      window.addEventListener('resize', scheduleBuildTimeline);
+      new ResizeObserver(scheduleBuildTimeline).observe(timeline);
+    }
+
     requestAnimationFrame(() => requestAnimationFrame(buildTimeline));
   }
 
-  /* Rebuild on resize (debounced) */
-  let _resizeTimer: ReturnType<typeof setTimeout>;
-  window.addEventListener('resize', () => {
-    clearTimeout(_resizeTimer);
-    _resizeTimer = setTimeout(buildTimeline, 150);
+  document.addEventListener('astro:page-load', () => {
+    _timelineInitialized = false;
+    initTimeline();
   });
-
-  document.addEventListener('astro:page-load', initTimeline);
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTimeline);
   } else {

@@ -6,7 +6,14 @@ export default {
       //color
       colors: {
         'primary-400': '#00C8E0',
-        'primary-200': '#7DDFEE'
+        'primary-200': '#7DDFEE',
+        primary: '#f43f5e',
+        primaryContainer: '#ff5a5f',
+        onPrimary: '#ffffff',
+        surface: '#f7f7f7',
+        onSurface: '#261817',
+        onSurfaceVariant: '#484848',
+        outlineVariant: '#f3f4f6'
       }
     }
   },
