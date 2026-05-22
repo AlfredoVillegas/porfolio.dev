@@ -18,94 +18,102 @@ import Typescript from './icons/TypeScriptIcon.astro';
 const TAGS = {
   JAVASCRIPT: {
     name: 'JavaScript',
-    class: 'bg-gray-800 text-white',
     icon: Javascript
   },
   TYPESCRIPT: {
     name: 'TypeScript',
-    class: 'bg-gray-800 text-white',
     icon: Typescript
   },
   Node: {
     name: 'Node.js',
-    class: 'bg-gray-800 text-white',
     icon: NodeIcon
   },
   NEST: {
     name: 'Nest.js',
-    class: 'bg-gray-800 text-white',
     icon: Nestjs
   },
   EXPRESS: {
     name: 'Express.js',
-    class: 'bg-gray-300 text-black',
     icon: Express
   },
   NEXT: {
     name: 'Next.js',
-    class: 'bg-gray-800 text-white',
     icon: NextJS
   },
   REACT: {
     name: 'React.js',
-    class: 'bg-gray-800 text-white',
     icon: React
   },
   TAILWIND: {
     name: 'Tailwind CSS',
-    class: 'bg-[#003159] text-white',
     icon: Tailwind
   },
   JEST: {
     name: 'Jest-Testing',
-    class: 'bg-gray-800 text-white',
     icon: Jest
   },
   POSTGRE: {
     name: 'PostgreSQL',
-    class: 'bg-gray-800 text-white',
     icon: Postgre
   },
   CLOUDINARY: {
     name: 'Cloudinary',
-    class: 'bg-gray-800 text-white',
     icon: Cloudinary
   },
   GIT: {
     name: 'Git',
-    class: 'bg-gray-800 text-white',
     icon: Git
   },
   GITHUB: {
     name: 'GitHub',
-    class: 'bg-gray-800 text-white',
     icon: GitHub
   },
   DOCKER: {
     name: 'Docker',
-    class: 'bg-gray-800 text-white',
     icon: Docker
   },
 
   TEAM: {
     name: 'En equipo',
-    class: 'bg-gray-800 text-white',
     icon: Teeam
   }
 };
 ---
 
 <div>
-  <ul class="flex flex-wrap gap-2">
+  <ul class="flex flex-wrap gap-4">
     {
       Object.values(TAGS).map(tag => (
         <li>
-          <span class={`flex gap-x-2 items-center rounded-full text-base md:text-lg ${tag.class} py-1 px-2 `}>
+          <div class="skill-tag flex gap-x-2 items-center">
             <tag.icon class="size-6" />
-            {tag.name}
-          </span>
+            <span>{tag.name}</span>
+          </div>
         </li>
       ))
     }
   </ul>
 </div>
+
+<style>
+  .skill-tag {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #484848;
+    background: #ffffff;
+    border: 1px solid rgba(226, 190, 188, 0.6); /* #e2bebc */
+    border-radius: 999px;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  }
+  .skill-tag:hover {
+    background: #fff0f2;
+    color: #b52330;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 15px -3px rgba(181, 35, 48, 0.1), 0 4px 6px -4px rgba(181, 35, 48, 0.1);
+    border-color: #f43f5e;
+  }
+</style>

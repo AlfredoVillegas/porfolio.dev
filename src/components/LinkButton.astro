@@ -1,18 +1,16 @@
 ---
-const { href } = Astro.props;
+const { href, class: className = "" } = Astro.props;
 ---
 
 <a
   target="_blank"
   href={href}
-  class="bg-white/5
-    border dark:border-white/10 border-gray-300
-    rounded-full
-    inline-flex justify-center items-center gap-x-2
-    py-1 px-2 md:py-2 md:px-4
-    text-xs md:text-base
-    transition
-    hover:scale-110 hover:bg-white/10"
+  class={`inline-flex items-center gap-x-2 group
+    font-['Space_Grotesk'] font-bold text-xs md:text-sm
+    text-[#006a62] no-underline
+    transition-colors duration-200
+    hover:text-[--primary-container] ${className}`}
 >
   <slot />
+  <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
 </a>

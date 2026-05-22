@@ -1,20 +1,117 @@
 ---
+import LinkedInIcon from './icons/LinkedIn.astro';
+import GitHubIcon from './icons/GitHub.astro';
+import MailIcon from './icons/Mail.astro';
+
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="rounded-lg shadow m-4 bg-black/5 dark:bg-black/20 backdrop-blur-lg w-full xl:w-[1120px] mx-auto mb-10">
-  <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-    <!--<span class="text-sm sm:text-center text-white7/90"
-      >© {currentYear}
-      <!--<a href="https://midu.dev/" class="hover:underline">midudev</a>. Casi
-      todos los derechos reservados.-->
+<footer class="w-full bg-[#141413] text-[#a89997] py-16 border-t border-[#e2bebc]/20 relative overflow-hidden font-sans">
+  <!-- Decorative Background Elements -->
+  <!-- Red/Pink Glow on the left -->
+  <div class="absolute -bottom-12 -left-12 w-80 h-80 bg-[#b52330]/5 rounded-full filter blur-[100px] pointer-events-none"></div>
+  <!-- Cyan Glow on the right -->
+  <div class="absolute -top-12 -right-12 w-80 h-80 bg-[#7af7e8]/5 rounded-full filter blur-[100px] pointer-events-none"></div>
+
+  <div class="max-w-5xl mx-auto px-4 md:px-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-white/5">
+      <!-- Brand Block (6 cols) -->
+      <div class="md:col-span-6 space-y-4">
+        <h3 class="font-['Newsreader'] text-3xl font-bold text-white tracking-wide">
+          Alfredo <span class="text-[#f43f5e]">Villegas</span>
+        </h3>
+        <p class="text-sm leading-relaxed max-w-sm text-[#a89997]">
+          Desarrollador Full-stack apasionado por construir productos web que combinan una lógica sólida con experiencias de usuario excepcionales.
+        </p>
+        <!-- Social Links (Mini Pills) -->
+        <div class="flex gap-3 pt-2">
+          <a 
+            href="https://linkedin.com/in/alfredo-villegas-backend/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="social-icon-btn p-2.5 bg-[#222221] hover:bg-[#b52330] rounded-xl text-white/80 hover:text-white border border-white/5 hover:border-transparent transition-all duration-300 active:scale-95"
+            aria-label="LinkedIn"
+          >
+            <LinkedInIcon class="size-5" />
+          </a>
+          <a 
+            href="https://github.com/alfredovillegas" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="social-icon-btn p-2.5 bg-[#222221] hover:bg-[#b52330] rounded-xl text-white/80 hover:text-white border border-white/5 hover:border-transparent transition-all duration-300 active:scale-95"
+            aria-label="GitHub"
+          >
+            <GitHubIcon class="size-5" />
+          </a>
+          <a 
+            href="mailto:alfreddovillegas@gmail.com" 
+            class="social-icon-btn p-2.5 bg-[#222221] hover:bg-[#b52330] rounded-xl text-white/80 hover:text-white border border-white/5 hover:border-transparent transition-all duration-300 active:scale-95"
+            aria-label="Email"
+          >
+            <MailIcon class="size-5" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation Column (3 cols) -->
+      <div class="md:col-span-3 space-y-4">
+        <h4 class="font-['Space_Grotesk'] text-xs font-bold uppercase tracking-widest text-[#7af7e8]/80">
+          Navegación
+        </h4>
+        <nav class="flex flex-col gap-2.5 text-sm">
+          <a href="#" class="footer-link hover:text-white transition-colors duration-250">Inicio</a>
+          <a href="#experiencia" class="footer-link hover:text-white transition-colors duration-250">Experiencia</a>
+          <a href="#proyectos" class="footer-link hover:text-white transition-colors duration-250">Proyectos</a>
+          <a href="#skills" class="footer-link hover:text-white transition-colors duration-250">Skills</a>
+          <a href="#sobre-mi" class="footer-link hover:text-white transition-colors duration-250">Sobre mí</a>
+        </nav>
+      </div>
+
+      <!-- Contact Info / Action (3 cols) -->
+      <div class="md:col-span-3 space-y-4">
+        <h4 class="font-['Space_Grotesk'] text-xs font-bold uppercase tracking-widest text-[#f43f5e]/80">
+          Contacto
+        </h4>
+        <div class="space-y-3 text-sm">
+          <p class="text-[#a89997]">
+            ¿Tienes un proyecto en mente? Hablemos.
+          </p>
+          <a 
+            href="mailto:alfreddovillegas@gmail.com" 
+            class="inline-flex items-center text-xs font-bold font-['Space_Grotesk'] tracking-wide text-white bg-[#222221] hover:bg-[#b52330] border border-white/5 hover:border-transparent px-4 py-2.5 rounded-xl transition-all duration-300 active:scale-95"
+          >
+            <MailIcon class="size-4 mr-2" />
+            Enviar Correo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+      <p class="text-[#887a78]">
+        &copy; {currentYear} Alfredo Villegas.
+      </p>
+    </div>
   </div>
-  <ul class="px-6 flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0">
-    <li>
-      <a href="#" class="hover:underline me-4 md:me-6">Inicio</a>
-    </li>
-    <li>
-      <a href="#" class="hover:underline">Contacto</a>
-    </li>
-  </ul>
 </footer>
+
+<style>
+  .footer-link {
+    position: relative;
+    width: fit-content;
+  }
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #f43f5e;
+    transition: width 0.3s ease;
+  }
+  .footer-link:hover::after {
+    width: 100%;
+  }
+</style>

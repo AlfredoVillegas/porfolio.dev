@@ -1,10 +1,10 @@
-<section class="flex flex-col md:flex-row gap-8 justify-center items-center">
+<section class="flex flex-col md:flex-row gap-16 md:gap-24 justify-center items-center">
   <div
-    class="text-white/90 [&>p]:mb-4 [&>p>strong]:text-primary-400 [&>p>strong]:font-semibold text-pretty order-2 md:order-1"
+    class="font-sans text-[var(--on-surface-variant)] text-base md:text-lg leading-relaxed [&>p]:mb-6 [&>p>strong]:text-[var(--primary)] [&>p>strong]:font-bold text-pretty order-2 md:order-1 flex-1 max-w-[600px]"
   >
     <p>
       Me llamo Alfredo Villegas, me apasiona participar en la planeación de ideas y su ejecución en productos
-      funcionales. <strong>Actualmente Soy un desarrollador web full-stack con experiencia trabajando en equipo</strong
+      funcionales. <strong>Actualmente soy un desarrollador web full-stack con experiencia trabajando en equipo</strong
       >.
     </p>
 
@@ -22,5 +22,64 @@
 
     <p>Fuera del trabajo, disfruto de cualquier actividad con mis amigos y familiares.</p>
   </div>
-  <img src="/yo-3.png" alt="foto de Alfredo Villegas" class="rounded-full size-64 order-1 md:order-2 bg-white" />
+
+  <div class="relative order-1 md:order-2 flex-shrink-0">
+    <!-- Patrón de puntos (igual que el hero) -->
+    <div class="absolute -top-6 -right-8 w-36 h-36 opacity-30 -z-10 pointer-events-none">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="dot-pattern-about" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <circle fill="#cbd5e1" cx="2" cy="2" r="1.5"></circle>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#dot-pattern-about)"></rect>
+      </svg>
+    </div>
+
+    <!-- Arco teal sutil (igual que el hero) -->
+    <div class="absolute -bottom-8 -left-10 w-32 h-32 -z-10 pointer-events-none opacity-50">
+      <svg viewBox="0 0 200 200" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="arc-gradient-about" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7ecfc9" stop-opacity="0.8"/>
+            <stop offset="60%" stop-color="#b0e0e6" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#e0f7fa" stop-opacity="0.05"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="98" fill="none" stroke="url(#arc-gradient-about)" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <!-- Estrella flotante roja (igual que el hero) -->
+    <div class="absolute -top-4 -left-4 text-[#f43f5e] animate-float pointer-events-none z-10">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C12 0 12 10.5 24 12C24 12 12 13.5 12 24C12 24 12 13.5 0 12C0 12 12 10.5 12 0Z" />
+      </svg>
+    </div>
+
+    <!-- Badge flotante </> (igual que el hero) -->
+    <div class="absolute -bottom-4 -right-4 bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-[0_10px_30px_-5px_rgba(0,0,0,0.12)] z-10 animate-float-delayed">
+      <span class="text-[#f43f5e] font-bold text-sm tracking-tighter">&lt;/&gt;</span>
+    </div>
+
+    <img 
+      src="/yo-3.png" 
+      alt="foto de Alfredo Villegas" 
+      class="rounded-3xl w-64 h-64 md:w-72 md:h-72 object-cover border-4 border-white shadow-2xl bg-white" 
+    />
+  </div>
 </section>
+
+<style>
+  @keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  .animate-float-delayed {
+    animation: float 4s ease-in-out 2s infinite;
+  }
+</style>

@@ -23,7 +23,7 @@ const navItems = [
 ];
 ---
 
-<header class="w-full self-center lg fixed top-0 z-50 bg-white/100/ backdrop-blur-md border-b border-[#e8e6dc] transition-all duration-300">
+<header class="w-full self-center lg fixed top-0 z-50 bg-[#f7f7f7] border-b border-[#e2bebc]/30 transition-all duration-300">
   <div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto w-full">
     <div class="font-['Newsreader'] text-2xl font-bold text-[#f43f5e]">
       AV
@@ -58,34 +58,69 @@ const navItems = [
 </header>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const sections = document.querySelectorAll('section');
+  const initHighlight = () => {
+    const sections = document.querySelectorAll('section, #proyectos');
     const navItems = document.querySelectorAll('header nav a');
+
+    if (sections.length === 0 || navItems.length === 0) return;
+
+    const intersectingSections = new Set();
 
     const callback = (entries: any[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          navItems.forEach(item => {
-            if (item.getAttribute('aria-label') == entry.target.id) {
-              item.classList.add('text-[#f43f5e]', 'font-bold');
-              item.querySelector('span')?.classList.add('w-full');
-            } else {
-              item.classList.remove('text-[#f43f5e]', 'font-bold');
-              item.querySelector('span')?.classList.remove('w-full');
-            }
-          });
+          intersectingSections.add(entry.target.id);
+        } else {
+          intersectingSections.delete(entry.target.id);
         }
       });
+
+      if (intersectingSections.size > 0) {
+        const activeId = Array.from(intersectingSections)[0];
+        navItems.forEach(item => {
+          if (item.getAttribute('aria-label') === activeId) {
+            item.classList.add('text-[#f43f5e]', 'font-bold');
+            item.classList.remove('text-[#484848]');
+            item.querySelector('span')?.classList.add('w-full');
+          } else {
+            item.classList.remove('text-[#f43f5e]', 'font-bold');
+            item.classList.add('text-[#484848]');
+            item.querySelector('span')?.classList.remove('w-full');
+          }
+        });
+      } else {
+        navItems.forEach(item => {
+          item.classList.remove('text-[#f43f5e]', 'font-bold');
+          item.classList.add('text-[#484848]');
+          item.querySelector('span')?.classList.remove('w-full');
+        });
+      }
     };
 
     const observer = new IntersectionObserver(callback, {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.3
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
     });
 
     sections.forEach(section => {
       observer.observe(section);
     });
-  });
+
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        intersectingSections.clear();
+        navItems.forEach(item => {
+          item.classList.remove('text-[#f43f5e]', 'font-bold');
+          item.classList.add('text-[#484848]');
+          item.querySelector('span')?.classList.remove('w-full');
+        });
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+  };
+
+  initHighlight();
+
+  document.addEventListener('astro:page-load', initHighlight);
 </script>
