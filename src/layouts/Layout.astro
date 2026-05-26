@@ -49,6 +49,7 @@ const { description, title } = Astro.props
   html {
     font-family: "Plus Jakarta Sans", "Onest Variable", system-ui, sans-serif;
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -57,6 +58,8 @@ const { description, title } = Astro.props
     min-height: 100vh;
     overscroll-behavior: none;
     color: #261817;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   @media (prefers-reduced-motion: reduce) {

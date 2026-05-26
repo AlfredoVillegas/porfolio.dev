@@ -563,16 +563,23 @@ const TIMELINE = [
     .exp-header {
       margin-bottom: 3.5rem;
     }
+    /* .timeline {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    } */
     .timeline-entry-wrapper {
       margin-bottom: 4rem;
     }
-    .timeline-svg {
+    .main-path {
       display: none;
+    }
+    .path-dot-group {
+      display: none !important;
     }
     .timeline::before {
       content: '';
       position: absolute;
-      left: 15px;
+      left: 12px;
       top: 0;
       bottom: 0;
       width: 2px;
@@ -585,15 +592,29 @@ const TIMELINE = [
       );
       z-index: 0;
     }
+    .timeline-entry-wrapper::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 0.9rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #14b8a6;
+      box-shadow: 0 0 0 6px rgba(20, 184, 166, 0.14);
+      transform: translateX(-50%);
+      z-index: 2;
+    }
     .timeline-entry {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 0rem;
+      padding-left: 0.6rem;
     }
     .entry-left .entry-card,
     .entry-right .entry-card {
       grid-column: 1;
       grid-row: 1;
-      justify-self: center;
+      justify-self: start;
       max-width: 100%;
       margin: 0;
     }
@@ -699,9 +720,13 @@ const TIMELINE = [
 
     if (!timeline || !svg || !mainPath || !entries.length) return;
 
-    /* Mobile: solo línea lateral (::before), sin conector SVG */
-    if (window.matchMedia('(max-width: 768px)').matches) {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    if (isMobile) {
       mainPath.setAttribute('d', '');
+      dotGroups.forEach((g) => {
+        g.style.display = 'none';
+      });
       return;
     }
 
@@ -717,15 +742,24 @@ const TIMELINE = [
     const pts: { x: number; y: number }[] = [];
 
     entries.forEach((entry) => {
-      const innerEl = entry.querySelector<HTMLElement>('.timeline-entry') ?? entry;
+      const innerEl =
+        entry.querySelector<HTMLElement>('.timeline-entry') ??
+        entry;
+
+      // En móvil el dot debe "caer" sobre la foto, no sobre el alto total de la fila.
+      const anchorEl = isMobile
+        ? (entry.querySelector<HTMLElement>('.entry-image-wrap') ?? innerEl)
+        : innerEl;
+
       const side    = entry.dataset.side;
 
-      const x = side === 'left' ? W * 0.77 : W * 0.23;
+      // Alinea el dot con la línea lateral (mismo left que `timeline::before`).
+      const x = isMobile ? 16 : (side === 'left' ? W * 0.77 : W * 0.23);
 
       const verticalGap = 30;
-      const rowTop      = offsetTopIn(timeline, innerEl);
+      const rowTop      = offsetTopIn(timeline, anchorEl);
       const yTop        = rowTop - verticalGap;
-      const yBottom     = rowTop + innerEl.offsetHeight + verticalGap;
+      const yBottom     = rowTop + anchorEl.offsetHeight + verticalGap;
 
       pts.push({ x, y: yTop });
       pts.push({ x, y: yBottom });
@@ -740,6 +774,8 @@ const TIMELINE = [
       const idx = parseInt(g.dataset.index ?? '0', 10);
       const pt  = pts[idx];
       if (!pt) return;
+
+      g.style.display = '';
       g.setAttribute('transform', `translate(${pt.x}, ${pt.y})`);
     });
   }

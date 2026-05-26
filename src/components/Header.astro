@@ -1,4 +1,8 @@
 ---
+import LinkedInIcon from './icons/LinkedIn.astro';
+import GitHubIcon from './icons/GitHub.astro';
+import MailIcon from './icons/Mail.astro';
+
 const navItems = [
   {
     title: 'Experiencia',
@@ -23,13 +27,13 @@ const navItems = [
 ];
 ---
 
-<header class="w-full self-center lg fixed top-0 z-50 bg-[#f7f7f7] border-b border-[#e2bebc]/30 transition-all duration-300">
+<header class="w-full self-center fixed top-0 z-50 bg-[#f7f7f7] backdrop-blur border-b border-[#e2bebc]/30 transition-all duration-300">
   <div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-7xl mx-auto w-full">
     <div class="font-['Newsreader'] text-2xl font-bold text-[#f43f5e]">
       AV
     </div>
     
-    <nav class="hidden md:flex gap-8 items-center">
+    <nav class="hidden md:flex gap-8 items-center" data-nav="desktop">
       {
         navItems.map(link => (
           <a
@@ -53,6 +57,101 @@ const navItems = [
       >
         Descargar CV
       </a>
+
+      <!-- Mobile menu button -->
+      <button
+        type="button"
+        class="md:hidden inline-flex items-center justify-center size-10 rounded-lg border border-[#e2bebc]/60 bg-white/70 text-[#261817] hover:bg-white transition"
+        aria-label="Abrir menú"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        data-mobile-menu-button
+      >
+        <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu (drawer) -->
+  <div class="md:hidden hidden" id="mobile-menu" data-mobile-menu-root>
+    <button
+      type="button"
+      class="fixed inset-0 bg-black/30 backdrop-blur-[1px] z-40"
+      aria-label="Cerrar menú"
+      data-mobile-menu-overlay
+    ></button>
+
+    <div class="fixed top-0 right-0 h-dvh w-[88vw] max-w-sm bg-[#f7f7f7] border-l border-[#e2bebc]/40 z-50 shadow-2xl">
+      <div class="flex items-center justify-between px-4 py-4 border-b border-[#e2bebc]/30">
+        <div class="font-['Newsreader'] text-xl font-bold text-[#f43f5e]">AV</div>
+        <button
+          type="button"
+          class="inline-flex items-center justify-center size-10 rounded-lg border border-[#e2bebc]/60 bg-white/70 text-[#261817] hover:bg-white transition"
+          aria-label="Cerrar menú"
+          data-mobile-menu-close
+        >
+          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="px-4 py-4 flex flex-col gap-1" data-nav="mobile">
+        {
+          navItems.map(link => (
+            <a
+              class="px-3 py-3 rounded-xl text-[#484848] font-['Work_Sans'] font-medium hover:bg-white/70 hover:text-[#f43f5e] transition-colors relative group"
+              aria-label={link.label}
+              href={link.url}
+              data-mobile-menu-link
+            >
+              {link.title}
+              <span class="absolute bottom-2 left-3 right-3 h-0.5 w-0 bg-[#f43f5e] transition-all duration-300 group-hover:w-[calc(100%-1.5rem)]"></span>
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="px-4 pb-6">
+        <a
+          href="https://drive.google.com/file/d/1lctuCumpw-PYYNqn8H-A6oHcIOyRjZdw/view?usp=drive_link"
+          target="_blank"
+          rel="noopener"
+          class="w-full inline-flex items-center justify-center bg-[#f43f5e] text-white font-['Plus_Jakarta_Sans'] font-bold px-4 py-3 rounded-xl hover:opacity-90 transition-all active:scale-95"
+        >
+          Descargar CV
+        </a>
+
+        <div class="flex gap-3 mt-5 pt-5 justify-center border-t border-[#e2bebc]/50">
+          <a 
+            href="https://linkedin.com/in/alfredo-villegas-backend/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="p-2.5 bg-white text-[#334155] hover:bg-[#f43f5e] hover:text-white rounded-xl border border-[#e2bebc]/70 hover:border-[#f43f5e] transition-all duration-300 active:scale-95"
+            aria-label="LinkedIn"
+          >
+            <LinkedInIcon class="size-5" />
+          </a>
+          <a 
+            href="https://github.com/alfredovillegas" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="p-2.5 bg-white text-[#334155] hover:bg-[#f43f5e] hover:text-white rounded-xl border border-[#e2bebc]/70 hover:border-[#f43f5e] transition-all duration-300 active:scale-95"
+            aria-label="GitHub"
+          >
+            <GitHubIcon class="size-5" />
+          </a>
+          <a 
+            href="mailto:alfreddovillegas@gmail.com" 
+            class="p-2.5 bg-white text-[#334155] hover:bg-[#f43f5e] hover:text-white rounded-xl border border-[#e2bebc]/70 hover:border-[#f43f5e] transition-all duration-300 active:scale-95"
+            aria-label="Email"
+          >
+            <MailIcon class="size-5" />
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -60,7 +159,7 @@ const navItems = [
 <script>
   const initHighlight = () => {
     const sections = document.querySelectorAll('section, #proyectos');
-    const navItems = document.querySelectorAll('header nav a');
+    const navItems = document.querySelectorAll('header nav[data-nav] a');
 
     if (sections.length === 0 || navItems.length === 0) return;
 
@@ -120,7 +219,42 @@ const navItems = [
     window.addEventListener('scroll', handleScroll);
   };
 
+  const initMobileMenu = () => {
+    const btn = document.querySelector<HTMLButtonElement>('[data-mobile-menu-button]');
+    const root = document.querySelector<HTMLElement>('[data-mobile-menu-root]');
+    const overlay = document.querySelector<HTMLElement>('[data-mobile-menu-overlay]');
+    const closeBtn = document.querySelector<HTMLButtonElement>('[data-mobile-menu-close]');
+    const links = document.querySelectorAll<HTMLElement>('[data-mobile-menu-link]');
+
+    if (!btn || !root || !overlay || !closeBtn) return;
+
+    const open = () => {
+      root.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+      document.documentElement.classList.add('overflow-hidden');
+    };
+    const close = () => {
+      root.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      document.documentElement.classList.remove('overflow-hidden');
+    };
+
+    btn.onclick = () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      expanded ? close() : open();
+    };
+    overlay.onclick = close;
+    closeBtn.onclick = close;
+    links.forEach((l) => (l.onclick = close));
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  };
+
   initHighlight();
+  initMobileMenu();
 
   document.addEventListener('astro:page-load', initHighlight);
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>
