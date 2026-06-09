@@ -14,6 +14,8 @@ import React from './icons/React.astro';
 import Tailwind from './icons/Tailwind.astro';
 import Teeam from './icons/Teeam.astro';
 import Typescript from './icons/TypeScriptIcon.astro';
+import cloude from './icons/cloude.astro';
+import cursor from './icons/cursor.astro';
 
 const TAGS = {
   JAVASCRIPT: {
@@ -72,10 +74,17 @@ const TAGS = {
     name: 'Docker',
     icon: Docker
   },
-
-  TEAM: {
-    name: 'En equipo',
-    icon: Teeam
+  // TEAM: {
+  //   name: 'En equipo',
+  //   icon: Teeam
+  // },
+  CLAUDE: {
+    name: 'Claude Code',
+    icon: cloude
+  },
+  CURSOR: {
+    name: 'Cursor',
+    icon: cursor
   }
 };
 ---
@@ -108,6 +117,7 @@ const TAGS = {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
   }
   .skill-tag:hover {
     background: #fff0f2;

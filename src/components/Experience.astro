@@ -8,8 +8,13 @@ const TIMELINE = [
     companyLogo: '/kiwi-bird.webp',
     companyColor: '#22c55e',
     isPresent: true,
-    description:
-      'CRM integral para dealer de autos enfocado en la gestión de ventas e inventario vehicular. Módulos clave y logros:<br/>• Llamadas telefónicas integradas directamente en la web y sockets en tiempo real con Twilio SMS.<br/>• Desarrollé <strong>vistas configurables y tablas inteligentes</strong> que dieron autonomía a los usuarios finales para gestionar sus propios datos.<br/>• Logré que equipos comerciales generen <strong>reportes claros en segundos</strong>.<br/>• Mejoré la usabilidad de una plataforma crítica para concesionarios, <strong>mejorando la adopción y eficiencia del sistema</strong>.',
+    description: 'CRM integral para dealer de autos enfocado en la gestión de ventas e inventario vehicular.',
+    achievements: [
+      'Llamadas telefónicas integradas directamente en la web y sockets en tiempo real con Twilio SMS.',
+      'Desarrollé <strong>vistas configurables y tablas inteligentes</strong> que dieron autonomía a los usuarios finales para gestionar sus propios datos.',
+      'Logré que equipos comerciales generen <strong>reportes claros en segundos</strong>.',
+      'Mejoré la usabilidad de una plataforma crítica para concesionarios, <strong>mejorando la adopción y eficiencia del sistema</strong>.',
+    ],
     tags: ['Next.js', 'React', 'Express.js', 'WebSocket', 'PostgreSQL'],
     image: '/projects/flowsups-3.webp',
     side: 'left' as const,
@@ -22,8 +27,12 @@ const TIMELINE = [
     companyLogo: '/kiwi-bird.webp',
     companyColor: '#22c55e',
     isPresent: true,
-    description:
-      'Lideré la arquitectura y desarrollo de Social Store (cliente externo), un <strong>sistema multi-tenant de tiendas online</strong> con dashboards para vendedores, autenticación 2FA e integraciones de pago. Desarrollé un <strong>sistema editor de plantillas</strong> que incluye: <br/>• Personalización interactiva de layouts, textos, fuentes y colores.<br/>• Gestión de imágenes (subida propia o galería).<br/>• Control de versiones para diseños.',
+    description: 'Lideré la arquitectura y desarrollo de Social Store (cliente externo), un <strong>sistema multi-tenant de tiendas online</strong> con dashboards para vendedores, autenticación 2FA e integraciones de pago. Desarrollé un <strong>sistema editor de plantillas</strong> que incluye:',
+    achievements: [
+      'Personalización interactiva de layouts, textos, fuentes y colores.',
+      'Gestión de imágenes (subida propia o galería).',
+      'Control de versiones para diseños.',
+    ],
     tags: ['Next.js', 'Node.js', 'NestJS', 'React', 'Docker', 'Pasarela de pagos'],
     image: '/projects/social-s-1.webp',
     side: 'right' as const,
@@ -35,8 +44,7 @@ const TIMELINE = [
     company: 'Kiwi Company',
     companyLogo: '/kiwi-bird.webp',
     companyColor: '#22c55e',
-    description:
-      '<strong>Web Corporativa & CMS:</strong> Integré Strapi para gestión de contenidos dinámicos. Creé secciones de blog y portafolio con internacionalización.<br/><br/><strong>E-commerce Shopify:</strong> Implementé tiendas con código personalizado usando Liquid, JavaScript y CSS, optimizando el flujo de compra de varios clientes.',
+    description: '<strong>Web Corporativa & CMS:</strong> Integré Strapi para gestión de contenidos dinámicos. Creé secciones de blog y portafolio con internacionalización.<br/><br/><strong>E-commerce Shopify:</strong> Implementé tiendas con código personalizado usando Liquid, JavaScript y CSS, optimizando el flujo de compra de varios clientes.',
     tags: ['Strapi', 'Next.js', 'Shopify', 'Liquid', 'JavaScript', 'CSS', 'i18n'],
     image: '/projects/kiwi-company.webp',
     side: 'left' as const,
@@ -48,8 +56,7 @@ const TIMELINE = [
     company: 'Incubadora Desafío Latam',
     companyLogo: '/desafiolatam_logo.jpeg',
     companyColor: '#6366f1',
-    description:
-      'Desarrollé InnovaXD: plataforma web de noticias para escolares con <strong>inteligencia artificial</strong> (GPT OpenAI). Proyecto presentado en el Summit de Fundación País Digital, con clientes como Diario El Mercurio, Fundación Kodea y el Ministerio de Educación en Chile.',
+    description: 'Desarrollé InnovaXD: plataforma web de noticias para escolares con <strong>inteligencia artificial</strong> (GPT OpenAI). Proyecto presentado en el Summit de Fundación País Digital, con clientes como Diario El Mercurio, Fundación Kodea y el Ministerio de Educación en Chile.',
     tags: ['React', 'Node.js', 'OpenAI', 'MongoDB', 'Express'],
     image: '/projects/pantalla-innova.jpg',
     link: 'https://innovaxd.cl/',
@@ -160,6 +167,13 @@ const TIMELINE = [
                 <span class="company-name">{item.company}</span>
               </div>
               <p class="entry-desc" set:html={item.description}></p>
+              {item.achievements && item.achievements.length > 0 && (
+                <ul class="entry-achievements">
+                  {item.achievements.map((achievement) => (
+                    <li class="entry-achievement" set:html={achievement}></li>
+                  ))}
+                </ul>
+              )}
               <div class="entry-tags">
                 {item.tags.map(tag => (
                   <span class="tag">{tag}</span>
@@ -434,7 +448,32 @@ const TIMELINE = [
     font-size: 0.85rem;
     color: #5a5a5a;
     line-height: 1.65;
-    margin-bottom: 1rem;
+    margin-bottom: 0.65rem;
+  }
+  .entry-achievements {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .entry-achievement {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    color: #5a5a5a;
+    line-height: 1.55;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+  .entry-achievement::before {
+    content: '✓';
+    color: #f43f5e;
+    font-weight: 700;
+    font-size: 0.85rem;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
   .entry-tags {
     display: flex;
