@@ -12,59 +12,127 @@ import LinkedIn from './icons/LinkedIn.astro';
 
   <!-- Section label -->
   <div class="rec-header">
-    <span class="rec-label">● RECOMENDACIÓN</span>
+    <span class="rec-label">● RECOMENDACIONES</span>
     <h2 class="rec-title">
       Lo <em>que dicen</em> de mi trabajo
     </h2>
   </div>
 
-  <!-- Recommendation card -->
-  <div class="rec-card js-rec-reveal" id="linkedin-recommendation">
-    <!-- Large decorative quote mark -->
-    <div class="rec-quote-mark" aria-hidden="true">"</div>
+  <div class="rec-container">
+    <!-- Recommendation card 1 -->
+    <div class="rec-card js-rec-reveal" id="linkedin-recommendation">
+      <!-- Large decorative quote mark -->
+      <div class="rec-quote-mark" aria-hidden="true">"</div>
 
-    <!-- LinkedIn badge -->
-    <a
-      href="https://linkedin.com/in/alfredo-villegas-backend/"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="rec-linkedin-badge"
-      aria-label="Ver en LinkedIn"
-    >
-      <LinkedIn class="rec-linkedin-icon" />
-      <span class="rec-badge-text">LinkedIn</span>
-    </a>
+      <!-- LinkedIn badge -->
+      <a
+        href="https://linkedin.com/in/alfredo-villegas-backend/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rec-linkedin-badge"
+        aria-label="Ver en LinkedIn"
+      >
+        <LinkedIn class="rec-linkedin-icon" />
+        <span class="rec-badge-text">LinkedIn</span>
+      </a>
 
-    <!-- Quote body -->
-    <blockquote class="rec-quote">
-      <p>
-        Alfredo demuestra compromiso, profesionalismo y agilidad en cada una de sus tareas. Es un desarrollador con
-        capacidad de liderazgo, aprendizaje continuo y resolución de conflictos. Excelente trabajando en equipo y con
-        basto conocimiento y experiencia como Fullstack. <strong>Sin duda fue un factor de valor en el equipo</strong> y recomiendo el
-        trabajo con Alfredo.
-      </p>
-    </blockquote>
+      <!-- Quote body -->
+      <blockquote class="rec-quote">
+        <p>
+          Alfredo demuestra compromiso, profesionalismo y agilidad en cada una de sus tareas. Es un desarrollador con
+          capacidad de liderazgo, aprendizaje continuo y resolución de conflictos. Excelente trabajando en equipo y con
+          basto conocimiento y experiencia como Fullstack. <strong>Sin duda fue un factor de valor en el equipo</strong> y recomiendo el
+          trabajo con Alfredo.
+        </p>
+      </blockquote>
 
-    <!-- Author -->
-    <div class="rec-author">
-      <img
-        src="/perfil-cata.jpg"
-        alt="Foto de Cata Evans Amador"
-        class="rec-avatar"
-        loading="lazy"
-      />
-      <div class="rec-author-info">
-        <span class="rec-author-name">Cata Evans Amador</span>
-        <span class="rec-author-role">Coordinadora de Proyectos en Desafío Latam</span>
-        <span class="rec-author-date">17 de Noviembre de 2023 · Supervisaba directamente a Alfredo</span>
+      <!-- Author -->
+      <div class="rec-author">
+        <img
+          src="/perfil-cata.jpg"
+          alt="Foto de Cata Evans Amador"
+          class="rec-avatar"
+          loading="lazy"
+        />
+        <div class="rec-author-info">
+          <span class="rec-author-name">Cata Evans Amador</span>
+          <span class="rec-author-role">Coordinadora de Proyectos en Desafío Latam</span>
+          <span class="rec-author-date">17 de Noviembre de 2023 · Supervisaba directamente a Alfredo</span>
+        </div>
+      </div>
+
+      <!-- Decorative sparkle -->
+      <div class="rec-sparkle" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#006a62" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C12 0 12 10.5 24 12C24 12 12 13.5 12 24C12 24 12 13.5 0 12C0 12 12 10.5 12 0Z" />
+        </svg>
       </div>
     </div>
 
-    <!-- Decorative sparkle -->
-    <div class="rec-sparkle" aria-hidden="true">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="#006a62" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 0C12 0 12 10.5 24 12C24 12 12 13.5 12 24C12 24 12 13.5 0 12C0 12 12 10.5 12 0Z" />
-      </svg>
+    <!-- Recommendation card 2 -->
+    <div class="rec-card js-rec-reveal" id="linkedin-recommendation-2">
+      <!-- Large decorative quote mark -->
+      <div class="rec-quote-mark" aria-hidden="true">"</div>
+
+      <!-- LinkedIn badge -->
+      <a
+        href="https://linkedin.com/in/alfredo-villegas-backend/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rec-linkedin-badge"
+        aria-label="Ver en LinkedIn"
+      >
+        <LinkedIn class="rec-linkedin-icon" />
+        <span class="rec-badge-text">LinkedIn</span>
+      </a>
+
+      <!-- Quote body -->
+      <blockquote class="rec-quote">
+        <p>
+          Trabajé con Alfredo Villegas en Kiwi Company durante varios proyectos donde tuve la oportunidad de liderar la gestión del producto y la coordinación de los equipos. Puedo afirmar que <strong>es uno de los desarrolladores más completos con los que he colaborado</strong>.
+        </p>
+        <p>
+          Combina una sólida capacidad técnica con una visión práctica del producto, lo que le permite comprender rápidamente los objetivos del negocio y convertirlos en soluciones eficientes y bien ejecutadas. Siempre destacó por su autonomía, responsabilidad y capacidad para enfrentar retos complejos manteniendo un alto nivel de calidad en sus entregables.
+        </p>
+        <!-- Hidden paragraphs -->
+        <div class="rec-extra" aria-hidden="true">
+          <p>
+            Más allá de sus habilidades como desarrollador Full Stack, aporta criterio, proactividad y una actitud de colaboración que fortalece cualquier equipo. Es el tipo de profesional que no solo cumple con lo esperado, sino que constantemente busca mejorar el producto, los procesos y la experiencia del usuario final.
+          </p>
+          <p>
+            Fue un verdadero placer trabajar con él y lo recomiendo plenamente para cualquier organización que busque talento técnico de alto nivel con mentalidad de producto y orientación a resultados.
+          </p>
+        </div>
+      </blockquote>
+      <!-- Toggle button -->
+      <button class="rec-toggle" aria-expanded="false" aria-controls="jose-extra">
+        <span class="rec-toggle-text">Ver más</span>
+        <svg class="rec-toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+
+      <!-- Author -->
+      <div class="rec-author">
+        <img
+          src="/jose-goncalves.webp"
+          alt="Foto de José Goncalves"
+          class="rec-avatar"
+          loading="lazy"
+        />
+        <div class="rec-author-info">
+          <span class="rec-author-name">José Goncalves</span>
+          <span class="rec-author-role">Product Owner / Project Manager en Kiwi Company</span>
+          <span class="rec-author-date">8 de junio de 2026 · José supervisaba directamente a Alfredo</span>
+        </div>
+      </div>
+
+      <!-- Decorative sparkle -->
+      <div class="rec-sparkle" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#006a62" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C12 0 12 10.5 24 12C24 12 12 13.5 12 24C12 24 12 13.5 0 12C0 12 12 10.5 12 0Z" />
+        </svg>
+      </div>
     </div>
   </div>
 </section>
@@ -77,14 +145,33 @@ import LinkedIn from './icons/LinkedIn.astro';
     flex-direction: column;
     align-items: center;
     padding: 0 1.5rem 6rem;
-    max-width: 1000px;
+    max-width: 1280px;
     margin: 0 auto;
+    width: 100%;
   }
 
   /* ── Connector line from timeline ────────────────────────── */
   .rec-connector {
     margin-bottom: 2rem;
     opacity: 0.6;
+  }
+
+  /* ── Container for multiple cards ────────────────────────── */
+  .rec-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .rec-container {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2.5rem;
+    }
   }
 
   /* ── Header ──────────────────────────────────────────────── */
@@ -118,7 +205,7 @@ import LinkedIn from './icons/LinkedIn.astro';
   /* ── Card ────────────────────────────────────────────────── */
   .rec-card {
     position: relative;
-    max-width: 680px;
+    max-width: 600px;
     width: 100%;
     padding: 3rem 3rem 2.5rem;
     background: #ffffff;
@@ -129,6 +216,7 @@ import LinkedIn from './icons/LinkedIn.astro';
       0 1px 4px rgba(0, 0, 0, 0.03);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    margin: 0 auto;
   }
   .rec-card:hover {
     transform: translateY(-4px);
@@ -192,10 +280,13 @@ import LinkedIn from './icons/LinkedIn.astro';
   }
   .rec-quote p {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #484848;
-    line-height: 1.75;
+    line-height: 1.5;
     margin: 0;
+  }
+  .rec-quote p:not(:last-child) {
+    margin-bottom: 1rem;
   }
   .rec-quote strong {
     color: #261817;
@@ -241,6 +332,45 @@ import LinkedIn from './icons/LinkedIn.astro';
     font-size: 0.72rem;
     color: #999;
     margin-top: 0.1rem;
+  }
+
+  /* ── Expand / collapse extra paragraphs ─────────────────── */
+  .rec-extra {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.35s ease;
+  }
+  .rec-extra.is-open {
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  .rec-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #006a62;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .rec-toggle:hover {
+    color: #b52330;
+  }
+  .rec-toggle-icon {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .rec-toggle[aria-expanded="true"] .rec-toggle-icon {
+    transform: rotate(180deg);
   }
 
   /* ── Decorative sparkle ──────────────────────────────────── */
@@ -300,8 +430,8 @@ import LinkedIn from './icons/LinkedIn.astro';
 
 <script>
   function initRecReveal() {
-    const card = document.querySelector('.js-rec-reveal');
-    if (!card) return;
+    const cards = document.querySelectorAll('.js-rec-reveal');
+    if (!cards.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -315,13 +445,39 @@ import LinkedIn from './icons/LinkedIn.astro';
       { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
     );
 
-    observer.observe(card);
+    cards.forEach((card) => {
+      observer.observe(card);
+    });
   }
 
-  document.addEventListener('astro:page-load', initRecReveal);
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initRecReveal);
-  } else {
+  function initReadMore() {
+    const toggles = document.querySelectorAll<HTMLButtonElement>('.rec-toggle');
+    toggles.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.rec-card');
+        if (!card) return;
+        const extra = card.querySelector<HTMLElement>('.rec-extra');
+        const label = btn.querySelector('.rec-toggle-text');
+        if (!extra || !label) return;
+
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        extra.setAttribute('aria-hidden', String(expanded));
+        extra.classList.toggle('is-open', !expanded);
+        label.textContent = expanded ? 'Ver más' : 'Ver menos';
+      });
+    });
+  }
+
+  function init() {
     initRecReveal();
+    initReadMore();
+  }
+
+  document.addEventListener('astro:page-load', init);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 </script>
